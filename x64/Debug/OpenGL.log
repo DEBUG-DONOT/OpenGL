@@ -1,4 +1,7 @@
 ﻿  OpenGL.cpp
+  Tool.cpp
+  正在生成代码...
+C:\Users\87784\source\repos\OpenGL\OpenGL\Tool.cpp(18,1): warning C4715: “Initialization::GladInitialization”: 不是所有的控件路径都返回值
   OpenGL.vcxproj -> C:\Users\87784\source\repos\OpenGL\x64\Debug\OpenGL.exe
   'pwsh.exe' 不是内部或外部命令，也不是可运行的程序
   或批处理文件。
