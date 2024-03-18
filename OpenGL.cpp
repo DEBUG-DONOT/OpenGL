@@ -1,17 +1,51 @@
 ﻿#include <iostream>
-#include<glad/glad.h>//gald放在glfw前面
-#include<GLFW/glfw3.h>
 #include"Tool.h"
 #include"shader.h"
 #include"Texture.h"
+#include"Camera.h"
+#include<glm/gtc/matrix_transform.hpp>
+float vertices[] = {
+    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+     0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
+     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
 
-float vertices[] = 
-{
-    //     ---- 位置 ----       ---- 颜色 ----     - 纹理坐标 -
-         0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // 右上
-         0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // 右下
-        -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // 左下
-        -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // 左上
+    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+     0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+     0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+    -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+
+    -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+    -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+    -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+     0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+     0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+     0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+     0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
+     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+
+    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+    -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
+    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
 };
 unsigned int indices[] = 
 {
@@ -22,7 +56,7 @@ unsigned int indices[] =
     0, 1, 3, // 第一个三角形
     1, 2, 3  // 第二个三角形
 };
-void processInput(GLFWwindow* window, float* mixNum);
+
 int main()
 {
     Initialization::GLFWInitialization();
@@ -30,24 +64,27 @@ int main()
     Initialization::GlfwWindowJudge(window);
     glfwMakeContextCurrent(window);
     Initialization::GladInitialization();
-    glViewport(0, 0, 800, 600);
+    glViewport(0, 0, 1600, 900);
+    Camera camera(glm::vec3(0, 0,3), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+    camera.SetScene(glm::radians(45.0), 16.0 / 9.0, 0.1f, 100.0f);
+    camera.SetModelMatrix(glm::rotate(camera.GetModelMatrix(), glm::radians(50.0f), glm::vec3(0.5, 1.0, 0.0)));
+    glEnable(GL_DEPTH_TEST);
 
     unsigned int VBO,VAO,EBO;
     glGenVertexArrays(1, &VAO);
-
     glBindVertexArray(VAO);
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3*sizeof(float)));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3*sizeof(float)));
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
-    glEnableVertexAttribArray(2);
-    glGenBuffers(1, &EBO);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+    //glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+    //glEnableVertexAttribArray(2);
+    //glGenBuffers(1, &EBO);
+    //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    //glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
     glBindVertexArray(0);
 
     VertexShader v("ShaderLib/BPVertex.glsl");
@@ -56,21 +93,23 @@ int main()
     Texture t("Texture/container.jpg");
     Texture t1("Texture/awesomeface.png");
     //渲染循环
-    float mixNum = 0.1;
+    //float mixNum = 0.1;
+    auto temp = camera.GetMVP();
     while (!glfwWindowShouldClose(window))
     {
-        processInput(window,&mixNum);
+        //processInput(window,&mixNum);
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
         s.Bind();
-        s.UpLoadUniformInt("ourTex", 0);
-        s.UpLoadUniformInt("ourTex1", 1);
-        s.UpLoadUniformFloat("mixNum", mixNum);
+        s.UpLoadUniformMat4("MVP",temp);
+        //s.UpLoadUniformInt("ourTex", 0);
+        //s.UpLoadUniformInt("ourTex1", 1);
+        //s.UpLoadUniformFloat("mixNum", mixNum);
         t.BindTexture();
-        t1.BindTexture(1);
+        //t1.BindTexture(1);
         glBindVertexArray(VAO);
-        //glDrawArrays(GL_TRIANGLES, 0, 3);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+        //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         
         glfwSwapBuffers(window);
         glfwPollEvents();
@@ -79,22 +118,3 @@ int main()
     return 0;
 }
 
-
-void processInput(GLFWwindow* window,float* mixNum)
-{
-    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-        glfwSetWindowShouldClose(window, true);
-
-    if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-    {
-        *mixNum += 0.001f; // change this value accordingly (might be too slow or too fast based on system hardware)
-        if (*mixNum >= 1.0f)
-            *mixNum = 1.0f;
-    }
-    if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-    {
-        *mixNum -= 0.001f; // change this value accordingly (might be too slow or too fast based on system hardware)
-        if (*mixNum <= 0.0f)
-            *mixNum = 0.0f;
-    }
-}

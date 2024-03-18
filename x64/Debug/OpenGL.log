@@ -1,4 +1,17 @@
-﻿  Texture.cpp
+﻿  Camera.cpp
+  OpenGL.cpp
+C:\Users\87784\source\repos\OpenGL\OpenGL\Camera.cpp(26,3): warning C4390: “;”: 找到空的受控语句；这是否是有意的?
+C:\Users\87784\source\repos\OpenGL\OpenGL\Camera.cpp(28,3): warning C4390: “;”: 找到空的受控语句；这是否是有意的?
+C:\Users\87784\source\repos\OpenGL\OpenGL\Camera.cpp(30,3): warning C4390: “;”: 找到空的受控语句；这是否是有意的?
+C:\Users\87784\source\repos\OpenGL\OpenGL\Camera.cpp(32,3): warning C4390: “;”: 找到空的受控语句；这是否是有意的?
+C:\Users\87784\source\repos\OpenGL\OpenGL\OpenGL.cpp(69,46): warning C4305: “参数”: 从“double”到“float”截断
+C:\Users\87784\source\repos\OpenGL\OpenGL\OpenGL.cpp(69,33): warning C4244: “参数”: 从“genType”转换到“float”，可能丢失数据
+C:\Users\87784\source\repos\OpenGL\OpenGL\OpenGL.cpp(69,33): warning C4244:         with
+C:\Users\87784\source\repos\OpenGL\OpenGL\OpenGL.cpp(69,33): warning C4244:         [
+C:\Users\87784\source\repos\OpenGL\OpenGL\OpenGL.cpp(69,33): warning C4244:             genType=double
+C:\Users\87784\source\repos\OpenGL\OpenGL\OpenGL.cpp(69,33): warning C4244:         ]
+C:\Users\87784\source\repos\OpenGL\OpenGL\OpenGL.cpp(73,26): warning C4101: “EBO”: 未引用的局部变量
+  正在生成代码...
   OpenGL.vcxproj -> C:\Users\87784\source\repos\OpenGL\x64\Debug\OpenGL.exe
   'pwsh.exe' 不是内部或外部命令，也不是可运行的程序
   或批处理文件。
