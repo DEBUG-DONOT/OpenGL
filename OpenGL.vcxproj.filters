@@ -24,6 +24,9 @@
     <ClCompile Include="Tool.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="model.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="shader.h">
@@ -32,5 +35,13 @@
     <ClInclude Include="Tool.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="model.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+    <None Include="ShaderLib\BPFrag.glsl" />
+    <None Include="ShaderLib\BPVertex.glsl" />
   </ItemGroup>
 </Project>
