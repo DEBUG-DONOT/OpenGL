@@ -54,7 +54,7 @@ int main()
     FragmentShader f("ShaderLib/BPFrag.glsl");
     Shader s(v, f);
     Texture t("Texture/container.jpg");
-    Texture t1("Texture/wall.jpg");
+    Texture t1("Texture/awesomeface.png");
     //渲染循环
     float mixNum = 0.1;
     while (!glfwWindowShouldClose(window))

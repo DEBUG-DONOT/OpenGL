@@ -1,7 +1,4 @@
-﻿  OpenGL.cpp
-C:\Users\87784\source\repos\OpenGL\OpenGL\OpenGL.cpp(59,18): warning C4305: “初始化”: 从“double”到“float”截断
-  shader.cpp
-  正在生成代码...
+﻿  Texture.cpp
   OpenGL.vcxproj -> C:\Users\87784\source\repos\OpenGL\x64\Debug\OpenGL.exe
   'pwsh.exe' 不是内部或外部命令，也不是可运行的程序
   或批处理文件。

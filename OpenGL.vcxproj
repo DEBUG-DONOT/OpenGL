@@ -130,12 +130,14 @@
     <ClCompile Include="model.cpp" />
     <ClCompile Include="OpenGL.cpp" />
     <ClCompile Include="shader.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Tool.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="model.h" />
     <ClInclude Include="shader.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Tool.h" />
   </ItemGroup>
