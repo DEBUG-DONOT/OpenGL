@@ -5,14 +5,16 @@
 #include"shader.h"
 #include"Texture.h"
 
-float vertices[] = {
+float vertices[] = 
+{
     //     ---- 位置 ----       ---- 颜色 ----     - 纹理坐标 -
          0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // 右上
          0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // 右下
         -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // 左下
         -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // 左上
 };
-unsigned int indices[] = {
+unsigned int indices[] = 
+{
     // 注意索引从0开始! 
     // 此例的索引(0,1,2,3)就是顶点数组vertices的下标，
     // 这样可以由下标代表顶点组合成矩形
@@ -20,7 +22,7 @@ unsigned int indices[] = {
     0, 1, 3, // 第一个三角形
     1, 2, 3  // 第二个三角形
 };
-
+void processInput(GLFWwindow* window, float* mixNum);
 int main()
 {
     Initialization::GLFWInitialization();
@@ -51,16 +53,21 @@ int main()
     VertexShader v("ShaderLib/BPVertex.glsl");
     FragmentShader f("ShaderLib/BPFrag.glsl");
     Shader s(v, f);
-    Texture t("Texture/wall.jpg");
-
-
+    Texture t("Texture/container.jpg");
+    Texture t1("Texture/wall.jpg");
     //渲染循环
+    float mixNum = 0.1;
     while (!glfwWindowShouldClose(window))
     {
+        processInput(window,&mixNum);
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
         s.Bind();
+        s.UpLoadUniformInt("ourTex", 0);
+        s.UpLoadUniformInt("ourTex1", 1);
+        s.UpLoadUniformFloat("mixNum", mixNum);
         t.BindTexture();
+        t1.BindTexture(1);
         glBindVertexArray(VAO);
         //glDrawArrays(GL_TRIANGLES, 0, 3);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
@@ -73,3 +80,21 @@ int main()
 }
 
 
+void processInput(GLFWwindow* window,float* mixNum)
+{
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, true);
+
+    if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+    {
+        *mixNum += 0.001f; // change this value accordingly (might be too slow or too fast based on system hardware)
+        if (*mixNum >= 1.0f)
+            *mixNum = 1.0f;
+    }
+    if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+    {
+        *mixNum -= 0.001f; // change this value accordingly (might be too slow or too fast based on system hardware)
+        if (*mixNum <= 0.0f)
+            *mixNum = 0.0f;
+    }
+}

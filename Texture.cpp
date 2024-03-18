@@ -13,6 +13,12 @@ void Texture::BindTexture()
 	glBindTexture(GL_TEXTURE_2D, textureID);
 }
 
+void Texture::BindTexture(int i)
+{
+	glActiveTexture(GL_TEXTURE0 + i);
+	glBindTexture(GL_TEXTURE_2D, textureID);
+}
+
 void Texture::UnBindTexture()
 {
 	glBindTexture(GL_TEXTURE_2D, 0);

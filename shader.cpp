@@ -173,6 +173,16 @@ void Shader::UpLoadUniformInt(const std::string& name, const int num)
 	glUniform1i(location, num);
 }
 
+void Shader::UpLoadUniformFloat(const std::string& name, const float num)
+{
+	int location = glGetUniformLocation(mShaderID, name.c_str());
+	if (location == -1)
+	{
+		std::cout << "up load int fail!" << name << std::endl;
+	}
+	glUniform1f(location, num);
+}
+
 void Shader::UPLoadUniformFloat2(const std::string& name, const glm::vec2& m_vec2)
 {
 	int location = glGetUniformLocation(mShaderID, name.c_str());
