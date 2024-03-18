@@ -3,6 +3,7 @@
 #include<iostream>	
 #include<fstream>
 #include<sstream>
+#include<glm/gtc/type_ptr.hpp>
 Shader::Shader(VertexShader vs, FragmentShader fs)
 {
 	// Read our shaders into the appropriate buffers
@@ -125,7 +126,7 @@ void BasicShader::ReadCodeFromFile(std::string path)
 	fileReader.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 	try
 	{
-		std::ofstream out("wk.txt");
+		//std::ofstream out("wk.txt");
 		fileReader.open(path.c_str());
 		std::cout << path << "open sucess" << std::endl;
 		std::stringstream codeStream;
@@ -140,4 +141,65 @@ void BasicShader::ReadCodeFromFile(std::string path)
 	 code=SrcCode;
 }
 
+void Shader::UpLoadUniformMat4(const std::string& name, const glm::mat4& m_matrix)
+{
+
+	int location = glGetUniformLocation(mShaderID, name.c_str());
+	if (location == -1)
+	{
+		std::cout << "up load mat4 fail!" << name << std::endl;
+	}
+	glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(m_matrix));
+}
+
+void Shader::UpLoadUniformMat3(const std::string& name, const glm::mat3& m_matrix)
+{
+
+	int location = glGetUniformLocation(mShaderID, name.c_str());
+	if (location == -1)
+	{
+		std::cout << "up load mat3 fail!" << name << std::endl;
+	}
+	glUniformMatrix3fv(location, 1, GL_FALSE, glm::value_ptr(m_matrix));
+}
+
+void Shader::UpLoadUniformInt(const std::string& name, const int num)
+{
+	int location = glGetUniformLocation(mShaderID, name.c_str());
+	if (location == -1)
+	{
+		std::cout << "up load int fail!" << name << std::endl;
+	}
+	glUniform1i(location, num);
+}
+
+void Shader::UPLoadUniformFloat2(const std::string& name, const glm::vec2& m_vec2)
+{
+	int location = glGetUniformLocation(mShaderID, name.c_str());
+	if (location == -1)
+	{
+		std::cout << "up load float2 fail!" << name << std::endl;
+	}
+	glUniform2f(location, m_vec2.x, m_vec2.y);
+}
+
+void Shader::UpLoadUniformFloat3(const std::string& name, const glm::vec3& m_vec3)
+{
+	int location = glGetUniformLocation(mShaderID, name.c_str());
+	if (location == -1)
+	{
+		std::cout << "up load float3 fail!" << name << std::endl;
+	}
+	glUniform3f(location, m_vec3.x, m_vec3.y, m_vec3.z);
+}
+
+void Shader::UpLoadUniformFloat4(const std::string& name, const glm::vec4& m_vec3)
+{
+	int location = glGetUniformLocation(mShaderID, name.c_str());
+	if (location == -1)
+	{
+		std::cout << "up load float4 fail!" << name << std::endl;
+	}
+	glUniform4f(location, m_vec3.x, m_vec3.y, m_vec3.z, m_vec3.w);
+}
 
