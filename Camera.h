@@ -21,3 +21,14 @@ private:
 	glm::vec3 cameraFront, cameraRight, cameraUp;
 
 };
+
+class Light
+{
+public:
+	Light(glm::vec3 position, glm::vec3 direction, glm::vec3 color);
+	inline glm::vec3 GetDir() const { return lightDir; }
+	inline glm::vec3 GetPos() const { return lightPos; }
+	inline glm::vec3 GetColor() const { return lightColor; }
+private:
+	glm::vec3 lightDir, lightPos, lightColor;
+};

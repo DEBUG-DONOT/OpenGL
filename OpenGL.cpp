@@ -90,8 +90,8 @@ int main()
     VertexShader v("ShaderLib/BPVertex.glsl");
     FragmentShader f("ShaderLib/BPFrag.glsl");
     Shader s(v, f);
-    Texture t("Texture/container.jpg");
-    Texture t1("Texture/awesomeface.png");
+    //Texture t("Texture/container.jpg");
+    //Texture t1("Texture/awesomeface.png");
     //渲染循环
     double deltaTime=0, lastFrame=0,currFrame;
     while (!glfwWindowShouldClose(window))
@@ -105,7 +105,7 @@ int main()
         s.Bind();
         auto temp = camera.GetMVP();
         s.UpLoadUniformMat4("MVP",temp);
-        t.BindTexture();
+        //t.BindTexture();
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
         //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

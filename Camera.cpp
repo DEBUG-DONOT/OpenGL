@@ -44,6 +44,7 @@ void Camera::ProcessInput(GLFWwindow* window,float deltaTime)
 	this->view= glm::lookAt(pos, pos+cameraFront, up);
 }
 
-
-
-
+Light::Light(glm::vec3 position, glm::vec3 direction, glm::vec3 color)
+	:lightDir(direction),lightPos(position),lightColor(color)
+{
+}
