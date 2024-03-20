@@ -168,7 +168,7 @@ void Shader::UpLoadUniformInt(const std::string& name, const int num)
 	int location = glGetUniformLocation(mShaderID, name.c_str());
 	if (location == -1)
 	{
-		std::cout << "up load int fail!" << name << std::endl;
+		std::cout << "upload int fail!" << name << std::endl;
 	}
 	glUniform1i(location, num);
 }

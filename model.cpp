@@ -1,6 +1,12 @@
 #include"model.h"
 #include<iostream>
+#define STB_IMAGE_IMPLEMENTATION
+#define STBI_WINDOWS_UTF8
 #include<stb_image.h>
+
+std::string textureDiffuse = "texture_diffuse";
+std::string textureSpec = "texture_specular";
+
 void Model::loadModel(std::string path)
 {
 	Assimp::Importer importer;
@@ -10,7 +16,7 @@ void Model::loadModel(std::string path)
         std::cout << "ERROR::ASSIMP::" << importer.GetErrorString() << std::endl;
         return;
     }
-    directory = path.substr(0, path.find_last_not_of('/'));
+    directory = path.substr(0, path.find_last_of('/'));
     ProcessNode(scene->mRootNode,scene);
 }
 
@@ -18,6 +24,7 @@ unsigned int Model::TextureFromFile(const char* str, const std::string& dic)
 {
     std::string fileName = std::string(str);
     fileName = dic + '/' + fileName;
+    //std::cout << fileName << std::endl;
     unsigned int textureID;
     glGenTextures(1, &textureID);
     glBindTexture(GL_TEXTURE_2D, textureID);
@@ -27,7 +34,6 @@ unsigned int Model::TextureFromFile(const char* str, const std::string& dic)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     int width, height, nrChannels;
     unsigned char* data = stbi_load(fileName.c_str(), &width, &height, &nrChannels, 0);
-    //std::cout << nrChannels << std::endl;
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
     glGenerateMipmap(GL_TEXTURE_2D);
     if (data)
@@ -39,7 +45,6 @@ unsigned int Model::TextureFromFile(const char* str, const std::string& dic)
             format = GL_RGB;
         else if (nrChannels == 4)
             format = GL_RGBA;
-
         glBindTexture(GL_TEXTURE_2D, textureID);
         glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);
@@ -51,10 +56,9 @@ unsigned int Model::TextureFromFile(const char* str, const std::string& dic)
     }
     else
     {
-        std::cout << "Texture failed to load at path: " << path << std::endl;
+        std::cout << "Texture failed to load at path: " << fileName << std::endl;
         stbi_image_free(data);
     }
-    //stbi_image_free(data);
     return textureID;
 }
 
@@ -110,9 +114,9 @@ Mesh Model::ProcessMesh(aiMesh* mesh, const aiScene* scene)
     if (mesh->mMaterialIndex >= 0)//´¦Àítexture
     {
         aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
-        std::vector<Texture> diffuseMap = loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
+        std::vector<Texture> diffuseMap = loadMaterialTextures(material, aiTextureType_DIFFUSE, textureDiffuse);
         tempTexture.insert(tempTexture.end(), diffuseMap.begin(), diffuseMap.end());
-        std::vector<Texture> specMap = loadMaterialTextures(material, aiTextureType_SPECULAR, "texture_specular");
+        std::vector<Texture> specMap = loadMaterialTextures(material, aiTextureType_SPECULAR, textureSpec);
         tempTexture.insert(tempTexture.end(), specMap.begin(), specMap.end());
     }
     return Mesh(tempVertex, tempIndex, tempTexture);
@@ -142,7 +146,7 @@ Model::Model(std::string path)
 
 void Model::Draw(Shader shader)
 {
-    for(auto & curr:Meshes)
+    for(Mesh curr:Meshes)
     {
         curr.Draw(shader);
     }
@@ -157,18 +161,18 @@ Mesh::Mesh(std::vector<Vertex> vts, std::vector<unsigned int> ids, std::vector<T
 void Mesh::Draw(Shader shader)
 {
     //todo
-    int diffuseNr = 1;
-    int specularNr = 1;
+    unsigned int diffuseNr = 1;
+    unsigned int specularNr = 1;
     for (int i = 0; i < textures.size(); i++)
     {
         glActiveTexture(GL_TEXTURE0 + i);
         std::string number;
         std::string name = textures[i].type;
-        if (name == "texture_diffuse")
+        if (name == textureDiffuse)
             number = std::to_string(diffuseNr++);
-        else if(name=="texture_specular")
+        else if(name==textureSpec)
             number = std::to_string(specularNr++);
-        shader.UpLoadUniformInt("material." + name + number, i);
+        shader.UpLoadUniformInt(name + number, i);
         glBindTexture(GL_TEXTURE_2D, textures[i].id);
     }
     glActiveTexture(GL_TEXTURE0);
