@@ -67,7 +67,7 @@ int main()
     glViewport(0, 0, 1600, 900);
     Camera camera(glm::vec3(0, 0,3), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
     camera.SetScene(glm::radians(45.0), 16.0 / 9.0, 0.1f, 100.0f);
-    camera.SetModelMatrix(glm::rotate(camera.GetModelMatrix(), glm::radians(50.0f), glm::vec3(0.5, 1.0, 0.0)));
+    //camera.SetModelMatrix(glm::rotate(camera.GetModelMatrix(), glm::radians(50.0f), glm::vec3(0.5, 1.0, 0.0)));
     glEnable(GL_DEPTH_TEST);
 
     unsigned int VBO,VAO,EBO;
@@ -93,24 +93,22 @@ int main()
     Texture t("Texture/container.jpg");
     Texture t1("Texture/awesomeface.png");
     //渲染循环
-    //float mixNum = 0.1;
-    auto temp = camera.GetMVP();
+    double deltaTime=0, lastFrame=0,currFrame;
     while (!glfwWindowShouldClose(window))
     {
-        //processInput(window,&mixNum);
+        currFrame = glfwGetTime();
+        deltaTime = currFrame - lastFrame;
+        lastFrame = currFrame;
+        camera.ProcessInput(window, deltaTime);
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
         s.Bind();
+        auto temp = camera.GetMVP();
         s.UpLoadUniformMat4("MVP",temp);
-        //s.UpLoadUniformInt("ourTex", 0);
-        //s.UpLoadUniformInt("ourTex1", 1);
-        //s.UpLoadUniformFloat("mixNum", mixNum);
         t.BindTexture();
-        //t1.BindTexture(1);
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 36);
         //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        
         glfwSwapBuffers(window);
         glfwPollEvents();
     }

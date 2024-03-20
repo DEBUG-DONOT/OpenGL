@@ -23,13 +23,17 @@ void Camera::ProcessInput(GLFWwindow* window,float deltaTime)
 {
 	float cameraSpeed = speed * deltaTime;
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-		;
+		this->model = glm::translate(this->model, this->cameraFront * -cameraSpeed);
 	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-		;
+		this->model = glm::translate(this->model, this->cameraFront * cameraSpeed);
 	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-		;
+		this->model = glm::translate(this->model, this->cameraRight * cameraSpeed);
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-		;
+		this->model = glm::translate(this->model, this->cameraRight * -cameraSpeed);
+	if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
+		this->model = glm::translate(this->model, this->cameraUp * -cameraSpeed);
+	if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
+		this->model = glm::translate(this->model, this->cameraUp * cameraSpeed);
 }
 
 
