@@ -5,58 +5,6 @@
 #include"Camera.h"
 #include<glm/gtc/matrix_transform.hpp>
 #include"model.h"
-float vertices[] = {
-    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-     0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-
-    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-     0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-    -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-
-    -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-    -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-    -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-
-     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-     0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-     0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-     0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-
-    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-     0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-
-    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-    -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
-};
-unsigned int indices[] = 
-{
-    // 注意索引从0开始! 
-    // 此例的索引(0,1,2,3)就是顶点数组vertices的下标，
-    // 这样可以由下标代表顶点组合成矩形
-
-    0, 1, 3, // 第一个三角形
-    1, 2, 3  // 第二个三角形
-};
 
 int main()
 {
@@ -66,11 +14,13 @@ int main()
     glfwMakeContextCurrent(window);
     Initialization::GladInitialization();
     glViewport(0, 0, 1600, 900);
-    Camera camera(glm::vec3(0, 0,3), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+    Camera camera(glm::vec3(0, 10,30), glm::vec3(0, 10, 0), glm::vec3(0, 1, 0));
     camera.SetScene(glm::radians(45.0), 16.0 / 9.0, 0.1f, 100.0f);
     glEnable(GL_DEPTH_TEST);
-    Model model("shenhe/shenhe.pmx");
-    VertexShader v("ShaderLib/BPVertex.glsl");
+    Light mLight(glm::vec3(0, 10, 30), glm::vec3(0, 10, 0), glm::vec3(255, 255, 255));
+    std::string path = "shenhe/shenhe.pmx";
+    Model model(path);
+    VertexShader v("ShaderLib/BPVertex.glsl");  
     FragmentShader f("ShaderLib/BPFrag.glsl");
     Shader s(v, f);
     double deltaTime=0, lastFrame=0,currFrame;
@@ -84,6 +34,9 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
         s.Bind();
         s.UpLoadUniformMat4("MVP",camera.GetMVP());
+        s.UpLoadUniformMat4("model", camera.GetModelMatrix());
+        s.UpLoadUniformFloat3("lightPos", mLight.GetPos());
+        s.UpLoadUniformFloat3("viewPos", camera.GetCameraPos());
         model.Draw(s);
         glfwSwapBuffers(window);
         glfwPollEvents();

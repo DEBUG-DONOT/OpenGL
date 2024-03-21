@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="mesh.cpp" />
     <ClCompile Include="model.cpp" />
     <ClCompile Include="OpenGL.cpp" />
     <ClCompile Include="shader.cpp" />
@@ -135,6 +136,7 @@
     <ClCompile Include="Tool.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="mesh.h" />
     <ClInclude Include="model.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="Camera.h" />

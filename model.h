@@ -1,56 +1,33 @@
-#pragma once
-#include<string>
-#include"shader.h"
-#include<vector>
+#ifndef MODEL_H
+#define MODEL_H
+#include "mesh.h"
+
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
-#include<glad/glad.h>
 #include"shader.h"
-
-
-struct Vertex
+class Model 
 {
-	glm::vec3 position;
-	glm::vec3 normal;
-	glm::vec2 TexCoord;
-};
-struct Texture
-{
-	unsigned int id;
-	std::string type;
-	aiString path;
-};
-
-class Mesh
-{
-public:
-	std::vector<Vertex> vertices;
-	std::vector<unsigned int> indices;
-	std::vector<Texture> textures;
-	Mesh(std::vector<Vertex> vts, std::vector<unsigned int> ids, std::vector<Texture> ts);
-	void Draw(Shader shader);
-
-private:
-	unsigned int VAO, VBO, EBO;
-	void SetUpMesh();
-
+    public:
+        /*  模型数据  */
+        vector<Texture> textures_loaded;	// stores all the textures loaded so far, optimization to make sure textures aren't loaded more than once.
+        vector<Mesh> meshes;
+        string directory;
+        /*  函数   */
+        Model(string path)
+        {
+            loadModel(path);
+        }
+        void Draw(Shader shader);   
+    private:
+        
+        /*  函数   */
+        void loadModel(string path);
+        void processNode(aiNode *node, const aiScene *scene);
+        Mesh processMesh(aiMesh *mesh, const aiScene *scene);
+        vector<Texture> loadMaterialTextures(aiMaterial *mat, aiTextureType type, 
+                                             string typeName, vector<bool> *bRepeats = nullptr);
+        unsigned int TextureFromFile(const char *path, const string &directory, bool gamma = false);
 };
 
-class Model
-{
-public:
-	Model(std::string path);
-	void Draw(Shader shader);
-private:
-	void loadModel(std::string path);
-	unsigned int TextureFromFile(const char* str, const std::string& dic);
-	std::vector<Mesh> Meshes;
-	std::string directory;
-	void ProcessNode(aiNode* node, const aiScene* scene);
-	Mesh ProcessMesh(aiMesh* mesh, const aiScene* scene);
-	std::vector<Texture> loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName);
-	const aiScene* scene = nullptr;
-
-
-};
+#endif

@@ -12,6 +12,7 @@ public:
 	inline glm::mat4 GetProjectionMatrix() const { return projection; }
 	inline glm::mat4 GetMVP() const { return projection * view * model; }
 	inline void SetModelMatrix(glm::mat4 model) { this->model = model; }
+	inline glm::vec3 GetCameraPos()const { return pos; }
 	//“∆∂Ø¥¶¿Ì
 	void ProcessInput(GLFWwindow* window, float deltaTime);
 private:
