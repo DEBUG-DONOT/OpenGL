@@ -14,30 +14,67 @@ int main()
     glfwMakeContextCurrent(window);
     Initialization::GladInitialization();
     glViewport(0, 0, 1600, 900);
-    Camera camera(glm::vec3(0, 10,30), glm::vec3(0, 10, 0), glm::vec3(0, 1, 0));
+    Camera camera(glm::vec3(0,10,30), glm::vec3(0, 10, 0), glm::vec3(0, 1, 0));
     camera.SetScene(glm::radians(45.0), 16.0 / 9.0, 0.1f, 100.0f);
-    glEnable(GL_DEPTH_TEST);
     Light mLight(glm::vec3(0, 10, 30), glm::vec3(0, 10, 0), glm::vec3(255, 255, 255));
     std::string path = "shenhe/shenhe.pmx";
+    std::string path1 = "nanosuit/nanosuit.obj";
     Model model(path);
+    Model model1(path1);
     VertexShader v("ShaderLib/BPVertex.glsl");  
     FragmentShader f("ShaderLib/BPFrag.glsl");
+
+    VertexShader v1("ShaderLib/StencilVert.glsl");
+    FragmentShader f1("ShaderLib/StencilFrag.glsl");
+
     Shader s(v, f);
+    Shader s1(v1, f1);
+
     double deltaTime=0, lastFrame=0,currFrame;
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS);
+    glEnable(GL_STENCIL_TEST);
+    glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
+    glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
     while (!glfwWindowShouldClose(window))
     {
         currFrame = glfwGetTime();
         deltaTime = currFrame - lastFrame;
         lastFrame = currFrame;
         camera.ProcessInput(window, deltaTime);
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+        ////////////////////////////////////////////////////
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+        
+        
+        /*glStencilMask(0x00);
+        glStencilFunc(GL_ALWAYS, 1, 0xFF);
+        glStencilMask(0xFF);*/
         s.Bind();
         s.UpLoadUniformMat4("MVP",camera.GetMVP());
         s.UpLoadUniformMat4("model", camera.GetModelMatrix());
         s.UpLoadUniformFloat3("lightPos", mLight.GetPos());
         s.UpLoadUniformFloat3("viewPos", camera.GetCameraPos());
         model.Draw(s);
+        
+        
+        /*glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
+        glStencilMask(0x00);
+        glDisable(GL_DEPTH_TEST);*/
+
+        //glm::mat4 scaleMatrix = glm::scale(glm::mat4(1.0), glm::vec3(1.5f, 1.5f, 1.5f));
+        glm::mat4 temp = glm::translate(glm::mat4(1.0), glm::vec3(10, 2, 2));
+        s1.Bind();
+        //s1.UpLoadUniformMat4("model", scaleMatrix*camera.GetModelMatrix());
+        s1.UpLoadUniformMat4("model1", temp * camera.GetModelMatrix());
+        s1.UpLoadUniformMat4("view1", camera.GetViewMatrix());
+        s1.UpLoadUniformMat4("projection1", camera.GetProjectionMatrix());
+        model1.Draw(s1);
+        
+        
+        glStencilMask(0xFF);
+        glEnable(GL_DEPTH_TEST);
+        
         glfwSwapBuffers(window);
         glfwPollEvents();
     }

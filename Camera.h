@@ -32,4 +32,5 @@ public:
 	inline glm::vec3 GetColor() const { return lightColor; }
 private:
 	glm::vec3 lightDir, lightPos, lightColor;
+	glm::vec3 kNum;//用一个vec来表示点光源的系数，第一个对应常数项，后面两个分别对应一次项和二次项
 };

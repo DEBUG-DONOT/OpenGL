@@ -61,5 +61,7 @@
     <None Include="README.md" />
     <None Include="ShaderLib\BPFrag.glsl" />
     <None Include="ShaderLib\BPVertex.glsl" />
+    <None Include="ShaderLib\StencilFrag.glsl" />
+    <None Include="ShaderLib\StencilVert.glsl" />
   </ItemGroup>
 </Project>
