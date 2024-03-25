@@ -33,10 +33,11 @@ int main()
     double deltaTime=0, lastFrame=0,currFrame;
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
-    //glEnable(GL_STENCIL_TEST);
-    //glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
-    //glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
-    glm::mat4 temp = glm::translate(glm::mat4(1.0), glm::vec3(10, 2, 2));
+    glEnable(GL_STENCIL_TEST);
+    glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
+    glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
+    //glm::mat4 temp = glm::translate(glm::mat4(1.0), glm::vec3(10, 2, 2));
+    glm::mat4 temp = glm::scale(glm::mat4(1.0), glm::vec3(1.1, 1, 1));
     while (!glfwWindowShouldClose(window))
     {
         currFrame = glfwGetTime();
@@ -45,9 +46,12 @@ int main()
         camera.ProcessInput(window, deltaTime);
         ////////////////////////////////////////////////////
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-        //glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-  
+        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+        //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+        
+
+        glStencilFunc(GL_ALWAYS, 1, 0xFF);
+        glStencilMask(0xFF);
         s.Bind();
         s.UpLoadUniformMat4("MVP",camera.GetMVP());
         s.UpLoadUniformMat4("model", camera.GetModelMatrix());
@@ -56,13 +60,17 @@ int main()
         //model.Draw(s.GetID());
         model.Draw(s);
         
+        glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
+        glStencilMask(0x00);
+        //glDisable(GL_DEPTH_TEST);
         s1.Bind();
         s1.UpLoadUniformMat4("model1", temp * camera.GetModelMatrix());
         s1.UpLoadUniformMat4("view1", camera.GetViewMatrix());
         s1.UpLoadUniformMat4("projection1", camera.GetProjectionMatrix());
-        //model1.Draw(s1.GetID());
-        model1.Draw(s1);
+        model.Draw(s1);
         
+        glStencilMask(0xFF);
+        glEnable(GL_DEPTH_TEST);
         
         glfwSwapBuffers(window);
         glfwPollEvents();
