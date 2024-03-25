@@ -46,7 +46,8 @@ class Mesh {
         /*  函数  */
         Mesh(vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture> textures);
         
-        void Draw(Shader shader);
+        void Draw(Shader& shader);
+        void Draw(GLuint shader);
     private:
         /*  渲染数据  */
         unsigned int VBO, EBO;

@@ -37,6 +37,7 @@ class Shader
 public:
 	Shader(VertexShader vs,FragmentShader fs);
 	virtual ~Shader();
+	inline GLuint GetID() { return mShaderID; }
 	void Bind();
 	void UnBind();
 	void UpLoadUniformMat4(const std::string& name, const glm::mat4& m_matrix);

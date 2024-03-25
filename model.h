@@ -18,7 +18,8 @@ class Model
         {
             loadModel(path);
         }
-        void Draw(Shader shader);   
+        void Draw(Shader& shader);   
+        void Draw(GLuint shader);
     private:
         
         /*  函数   */
