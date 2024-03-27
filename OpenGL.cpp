@@ -1,6 +1,5 @@
 ﻿#include <iostream>
 #include"Tool.h"
-#include"shader.h"
 #include"Texture.h"
 #include"Camera.h"
 #include<glm/gtc/matrix_transform.hpp>
@@ -80,21 +79,7 @@ int main()
 
     Shader s(v, f);
 
-    skyBox skb(skyboxVertices, faces);
-    /*unsigned int skbVAO, skbVBO;
-    glGenBuffers(1, &skbVBO);
-    glGenVertexArrays(1, &skbVAO);
-    glBindVertexArray(skbVAO);
-    glBindBuffer(GL_ARRAY_BUFFER, skbVBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    glBindVertexArray(0);
-    CubeTexture cube(faces);
-    VertexShader sv("ShaderLib/skyBoxVert.glsl");
-    FragmentShader sf("ShaderLib/skyBoxFrag.glsl");
-    Shader skbs(sv,sf);*/
-
+    skyBox skb(&skyboxVertices[0], faces);
 
 
     double deltaTime=0, lastFrame=0,currFrame;
@@ -117,17 +102,6 @@ int main()
         //glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
         skb.Draw(camera);
-        
-        /*glDepthMask(GL_FALSE);
-        glBindVertexArray(skbVAO);
-        skbs.Bind();
-        skbs.UpLoadUniformMat4("SkyBoxProjection", camera.GetProjectionMatrix());
-        skbs.UpLoadUniformMat4("SkyBoxView", glm::mat4(glm::mat3(camera.GetViewMatrix())));
-        glActiveTexture(GL_TEXTURE0);
-        cube.BindTexture();
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-        glBindVertexArray(0);
-        glDepthMask(GL_TRUE);*/
 
         s.Bind();
         s.UpLoadUniformMat4("MVP",camera.GetMVP());
@@ -136,10 +110,6 @@ int main()
         s.UpLoadUniformFloat3("viewPos", camera.GetCameraPos());
         //model.Draw(s.GetID());
         model.Draw(s);
-
-      
-
-
 
         glfwSwapBuffers(window);
         glfwPollEvents();

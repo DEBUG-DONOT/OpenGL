@@ -6,10 +6,10 @@
 class skyBox
 {
 public:
-	skyBox(float box[],std::vector<std::string>& texturPath);
+	skyBox(float* box,std::vector<std::string>& texturPath);
 	void Draw(const Camera& camera);
 private:
-	void setup(float box[]);
+	void setup(float* box);
 	unsigned int vao, vbo;
 	std::vector<std::string> texturPath;
 	Shader* shader=nullptr;
