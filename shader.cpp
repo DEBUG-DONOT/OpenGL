@@ -100,6 +100,8 @@ Shader::Shader(VertexShader vs, FragmentShader fs)
 	glDetachShader(this->mShaderID, fragmentShader);
 }
 
+
+
 Shader::~Shader()
 {
 	glDeleteProgram(this->mShaderID);

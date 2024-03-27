@@ -132,6 +132,7 @@
     <ClCompile Include="OpenGL.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="skyBox.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Tool.cpp" />
   </ItemGroup>
@@ -140,6 +141,7 @@
     <ClInclude Include="model.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="skyBox.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Tool.h" />
   </ItemGroup>
@@ -147,6 +149,8 @@
     <None Include="README.md" />
     <None Include="ShaderLib\BPFrag.glsl" />
     <None Include="ShaderLib\BPVertex.glsl" />
+    <None Include="ShaderLib\skyBoxFrag.glsl" />
+    <None Include="ShaderLib\skyBoxVert.glsl" />
     <None Include="ShaderLib\StencilFrag.glsl" />
     <None Include="ShaderLib\StencilVert.glsl" />
   </ItemGroup>

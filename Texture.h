@@ -1,6 +1,7 @@
-//#pragma once
-//#include<string>
-//#include<glad/glad.h>
+#pragma once
+#include<string>
+#include<glad/glad.h>
+#include<vector>
 //class Texture
 //{
 //public:
@@ -12,3 +13,14 @@
 //	void Load_Texture(std::string path);
 //	unsigned int textureID;
 //};
+
+class CubeTexture
+{
+public:
+	CubeTexture(std::vector <std::string> cubePath);
+	void BindTexture();
+	void UnBindTexture();
+private:
+	void LoadTexture(std::vector<std::string> path);
+	unsigned int textureID;
+};

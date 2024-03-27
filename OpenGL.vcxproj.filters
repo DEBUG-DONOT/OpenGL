@@ -36,6 +36,9 @@
     <ClCompile Include="mesh.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="skyBox.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="shader.h">
@@ -56,6 +59,9 @@
     <ClInclude Include="mesh.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="skyBox.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
@@ -63,5 +69,7 @@
     <None Include="ShaderLib\BPVertex.glsl" />
     <None Include="ShaderLib\StencilFrag.glsl" />
     <None Include="ShaderLib\StencilVert.glsl" />
+    <None Include="ShaderLib\skyBoxVert.glsl" />
+    <None Include="ShaderLib\skyBoxFrag.glsl" />
   </ItemGroup>
 </Project>

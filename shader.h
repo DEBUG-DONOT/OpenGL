@@ -36,7 +36,7 @@ class Shader
 {
 public:
 	Shader(VertexShader vs,FragmentShader fs);
-	virtual ~Shader();
+	~Shader();
 	inline GLuint GetID() { return mShaderID; }
 	void Bind();
 	void UnBind();

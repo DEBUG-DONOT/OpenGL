@@ -5,7 +5,61 @@
 #include"Camera.h"
 #include<glm/gtc/matrix_transform.hpp>
 #include"model.h"
+#include"skyBox.h"
 
+std::vector<std::string> faces
+{
+    "skybox/right.jpg",
+    "skybox/left.jpg",
+    "skybox/top.jpg",
+    "skybox/bottom.jpg",
+    "skybox/front.jpg",
+    "skybox/back.jpg"
+};
+float skyboxVertices[] = {
+    // positions          
+    -1.0f,  1.0f, -1.0f,
+    -1.0f, -1.0f, -1.0f,
+     1.0f, -1.0f, -1.0f,
+     1.0f, -1.0f, -1.0f,
+     1.0f,  1.0f, -1.0f,
+    -1.0f,  1.0f, -1.0f,
+
+    -1.0f, -1.0f,  1.0f,
+    -1.0f, -1.0f, -1.0f,
+    -1.0f,  1.0f, -1.0f,
+    -1.0f,  1.0f, -1.0f,
+    -1.0f,  1.0f,  1.0f,
+    -1.0f, -1.0f,  1.0f,
+
+     1.0f, -1.0f, -1.0f,
+     1.0f, -1.0f,  1.0f,
+     1.0f,  1.0f,  1.0f,
+     1.0f,  1.0f,  1.0f,
+     1.0f,  1.0f, -1.0f,
+     1.0f, -1.0f, -1.0f,
+
+    -1.0f, -1.0f,  1.0f,
+    -1.0f,  1.0f,  1.0f,
+     1.0f,  1.0f,  1.0f,
+     1.0f,  1.0f,  1.0f,
+     1.0f, -1.0f,  1.0f,
+    -1.0f, -1.0f,  1.0f,
+
+    -1.0f,  1.0f, -1.0f,
+     1.0f,  1.0f, -1.0f,
+     1.0f,  1.0f,  1.0f,
+     1.0f,  1.0f,  1.0f,
+    -1.0f,  1.0f,  1.0f,
+    -1.0f,  1.0f, -1.0f,
+
+    -1.0f, -1.0f, -1.0f,
+    -1.0f, -1.0f,  1.0f,
+     1.0f, -1.0f, -1.0f,
+     1.0f, -1.0f, -1.0f,
+    -1.0f, -1.0f,  1.0f,
+     1.0f, -1.0f,  1.0f
+};
 int main()
 {
     Initialization::GLFWInitialization();
@@ -20,22 +74,36 @@ int main()
     std::string path = "shenhe/shenhe.pmx";
     std::string path1 = "nanosuit/nanosuit.obj";
     Model model(path);
-    Model model1(path1);
+    
     VertexShader v("ShaderLib/BPVertex.glsl");  
     FragmentShader f("ShaderLib/BPFrag.glsl");
 
-    VertexShader v1("ShaderLib/StencilVert.glsl");
-    FragmentShader f1("ShaderLib/StencilFrag.glsl");
-
     Shader s(v, f);
-    Shader s1(v1, f1);
+
+    skyBox skb(skyboxVertices, faces);
+    /*unsigned int skbVAO, skbVBO;
+    glGenBuffers(1, &skbVBO);
+    glGenVertexArrays(1, &skbVAO);
+    glBindVertexArray(skbVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, skbVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glBindVertexArray(0);
+    CubeTexture cube(faces);
+    VertexShader sv("ShaderLib/skyBoxVert.glsl");
+    FragmentShader sf("ShaderLib/skyBoxFrag.glsl");
+    Shader skbs(sv,sf);*/
+
+
 
     double deltaTime=0, lastFrame=0,currFrame;
+    glEnable(GL_CULL_FACE);
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
-    glEnable(GL_STENCIL_TEST);
-    glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
-    glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
+    //glEnable(GL_STENCIL_TEST);
+    //glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
+    //glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
     //glm::mat4 temp = glm::translate(glm::mat4(1.0), glm::vec3(10, 2, 2));
     glm::mat4 temp = glm::scale(glm::mat4(1.0), glm::vec3(1.1, 1, 1));
     while (!glfwWindowShouldClose(window))
@@ -46,12 +114,21 @@ int main()
         camera.ProcessInput(window, deltaTime);
         ////////////////////////////////////////////////////
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-        //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+        //glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+        skb.Draw(camera);
         
+        /*glDepthMask(GL_FALSE);
+        glBindVertexArray(skbVAO);
+        skbs.Bind();
+        skbs.UpLoadUniformMat4("SkyBoxProjection", camera.GetProjectionMatrix());
+        skbs.UpLoadUniformMat4("SkyBoxView", glm::mat4(glm::mat3(camera.GetViewMatrix())));
+        glActiveTexture(GL_TEXTURE0);
+        cube.BindTexture();
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+        glBindVertexArray(0);
+        glDepthMask(GL_TRUE);*/
 
-        glStencilFunc(GL_ALWAYS, 1, 0xFF);
-        glStencilMask(0xFF);
         s.Bind();
         s.UpLoadUniformMat4("MVP",camera.GetMVP());
         s.UpLoadUniformMat4("model", camera.GetModelMatrix());
@@ -59,19 +136,11 @@ int main()
         s.UpLoadUniformFloat3("viewPos", camera.GetCameraPos());
         //model.Draw(s.GetID());
         model.Draw(s);
-        
-        glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
-        glStencilMask(0x00);
-        //glDisable(GL_DEPTH_TEST);
-        s1.Bind();
-        s1.UpLoadUniformMat4("model1", temp * camera.GetModelMatrix());
-        s1.UpLoadUniformMat4("view1", camera.GetViewMatrix());
-        s1.UpLoadUniformMat4("projection1", camera.GetProjectionMatrix());
-        model.Draw(s1);
-        
-        glStencilMask(0xFF);
-        glEnable(GL_DEPTH_TEST);
-        
+
+      
+
+
+
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
