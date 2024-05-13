@@ -1,21 +1,78 @@
 #include"skyBox.h"
+float SBV[] = {
+    // positions          
+    -1.0f,  1.0f, -1.0f,
+    -1.0f, -1.0f, -1.0f,
+     1.0f, -1.0f, -1.0f,
+     1.0f, -1.0f, -1.0f,
+     1.0f,  1.0f, -1.0f,
+    -1.0f,  1.0f, -1.0f,
 
+    -1.0f, -1.0f,  1.0f,
+    -1.0f, -1.0f, -1.0f,
+    -1.0f,  1.0f, -1.0f,
+    -1.0f,  1.0f, -1.0f,
+    -1.0f,  1.0f,  1.0f,
+    -1.0f, -1.0f,  1.0f,
+
+     1.0f, -1.0f, -1.0f,
+     1.0f, -1.0f,  1.0f,
+     1.0f,  1.0f,  1.0f,
+     1.0f,  1.0f,  1.0f,
+     1.0f,  1.0f, -1.0f,
+     1.0f, -1.0f, -1.0f,
+
+    -1.0f, -1.0f,  1.0f,
+    -1.0f,  1.0f,  1.0f,
+     1.0f,  1.0f,  1.0f,
+     1.0f,  1.0f,  1.0f,
+     1.0f, -1.0f,  1.0f,
+    -1.0f, -1.0f,  1.0f,
+
+    -1.0f,  1.0f, -1.0f,
+     1.0f,  1.0f, -1.0f,
+     1.0f,  1.0f,  1.0f,
+     1.0f,  1.0f,  1.0f,
+    -1.0f,  1.0f,  1.0f,
+    -1.0f,  1.0f, -1.0f,
+
+    -1.0f, -1.0f, -1.0f,
+    -1.0f, -1.0f,  1.0f,
+     1.0f, -1.0f, -1.0f,
+     1.0f, -1.0f, -1.0f,
+    -1.0f, -1.0f,  1.0f,
+     1.0f, -1.0f,  1.0f
+};
+
+float* skyBox::standarVertex = &SBV[0];
 //@param box 天空盒数据指针
 //@param texturePath 纹理路径
-skyBox::skyBox(float* box, std::vector<std::string>& texturPath)
-	:texturPath(texturPath)
+skyBox::skyBox(float* box, std::vector<std::string>& texturePath)
+	:texturePath(texturePath)
 {
 	setup(box);
-	texture = new CubeTexture(texturPath);
+	texture = new CubeTexture(texturePath);
 	//初始化shader
 	VertexShader sv("ShaderLib/skyBoxVert.glsl");
 	FragmentShader sf("ShaderLib/skyBoxFrag.glsl");
 	shader=new Shader(sv, sf); 
 }
 
+skyBox::skyBox(std::vector<std::string>& texturePath)
+    :texturePath(texturePath)
+{
+    setup( this->standarVertex);
+    texture = new CubeTexture(texturePath);
+    //初始化shader
+    VertexShader sv("ShaderLib/skyBoxVert.glsl");
+    FragmentShader sf("ShaderLib/skyBoxFrag.glsl");
+    shader = new Shader(sv, sf);
+}
+
 void skyBox::Draw(const Camera& camera)
 {
-	glDepthMask(GL_FALSE);
+	glDepthFunc(GL_LEQUAL);
+	//glDepthMask(GL_FALSE);
 	glBindVertexArray(vao);
 	shader->Bind();
 	shader->UpLoadUniformMat4("SkyBoxProjection", camera.GetProjectionMatrix());
@@ -24,7 +81,8 @@ void skyBox::Draw(const Camera& camera)
 	texture->BindTexture();
 	glDrawArrays(GL_TRIANGLES, 0, 36);
 	glBindVertexArray(0);
-	glDepthMask(GL_TRUE);
+	//glDepthMask(GL_TRUE);
+	glDepthFunc(GL_LESS);
 }
 
 void skyBox::setup(float* box)

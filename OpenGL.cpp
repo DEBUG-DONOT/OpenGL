@@ -73,15 +73,11 @@ int main()
     std::string path = "shenhe/shenhe.pmx";
     std::string path1 = "nanosuit/nanosuit.obj";
     Model model(path);
-    
+    glEnable(GL_MULTISAMPLE);
     VertexShader v("ShaderLib/BPVertex.glsl");  
     FragmentShader f("ShaderLib/BPFrag.glsl");
-
     Shader s(v, f);
-
-    skyBox skb(&skyboxVertices[0], faces);
-
-
+    skyBox skb(faces);
     double deltaTime=0, lastFrame=0,currFrame;
     glEnable(GL_CULL_FACE);
     glEnable(GL_DEPTH_TEST);
@@ -101,7 +97,7 @@ int main()
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         //glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-        skb.Draw(camera);
+        
 
         s.Bind();
         s.UpLoadUniformMat4("MVP",camera.GetMVP());
@@ -110,7 +106,7 @@ int main()
         s.UpLoadUniformFloat3("viewPos", camera.GetCameraPos());
         //model.Draw(s.GetID());
         model.Draw(s);
-
+        skb.Draw(camera);
         glfwSwapBuffers(window);
         glfwPollEvents();
     }

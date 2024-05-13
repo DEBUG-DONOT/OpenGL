@@ -55,7 +55,7 @@
 //	stbi_image_free(data);
 //}
 
-CubeTexture::CubeTexture(std::vector<std::string> cubePath)
+CubeTexture::CubeTexture(std::vector<std::string>& cubePath)
 {
 	LoadTexture(cubePath);
 }
@@ -70,7 +70,7 @@ void CubeTexture::UnBindTexture()
 	glBindTexture(GL_TEXTURE_CUBE_MAP,0);
 }
 
-void CubeTexture::LoadTexture(std::vector<std::string> path)
+void CubeTexture::LoadTexture(std::vector<std::string>& path)
 {
     glGenTextures(1, &textureID);
     glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
