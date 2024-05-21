@@ -82,6 +82,7 @@ int main()
     glEnable(GL_CULL_FACE);
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
+    Initialization::GammaCorrectionControl(true);
     //glEnable(GL_STENCIL_TEST);
     //glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
     //glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);

@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include"shader.h"
+#include<rttr/registration.h>
 #define MAX_BONE_INFLUENCE 4
 
 using namespace std;

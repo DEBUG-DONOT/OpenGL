@@ -14,6 +14,16 @@
 //	unsigned int textureID;
 //};
 
+
+/*
+* 这里准备一个压缩的能直接被gpu读取的纹理类
+*/
+class compressedTexture
+{
+
+};
+
+
 class CubeTexture
 {
 public:

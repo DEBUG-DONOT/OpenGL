@@ -7,5 +7,6 @@ public:
 	static void GLFWInitialization();
 	static int GladInitialization();
 	static void GlfwWindowJudge(GLFWwindow* window);
+	static void GammaCorrectionControl(bool flga);
 };
 

@@ -1,3 +1,5 @@
+C:\Users\87784\source\repos\OpenGL\OpenGL\Component.cpp;C:\Users\87784\source\repos\OpenGL\OpenGL\x64\Debug\Component.obj
+C:\Users\87784\source\repos\OpenGL\OpenGL\GameObject.cpp;C:\Users\87784\source\repos\OpenGL\OpenGL\x64\Debug\GameObject.obj
 C:\Users\87784\source\repos\OpenGL\OpenGL\mesh.cpp;C:\Users\87784\source\repos\OpenGL\OpenGL\x64\Debug\mesh.obj
 C:\Users\87784\source\repos\OpenGL\OpenGL\model.cpp;C:\Users\87784\source\repos\OpenGL\OpenGL\x64\Debug\model.obj
 C:\Users\87784\source\repos\OpenGL\OpenGL\OpenGL.cpp;C:\Users\87784\source\repos\OpenGL\OpenGL\x64\Debug\OpenGL.obj
@@ -6,3 +8,4 @@ C:\Users\87784\source\repos\OpenGL\OpenGL\Camera.cpp;C:\Users\87784\source\repos
 C:\Users\87784\source\repos\OpenGL\OpenGL\skyBox.cpp;C:\Users\87784\source\repos\OpenGL\OpenGL\x64\Debug\skyBox.obj
 C:\Users\87784\source\repos\OpenGL\OpenGL\Texture.cpp;C:\Users\87784\source\repos\OpenGL\OpenGL\x64\Debug\Texture.obj
 C:\Users\87784\source\repos\OpenGL\OpenGL\Tool.cpp;C:\Users\87784\source\repos\OpenGL\OpenGL\x64\Debug\Tool.obj
+C:\Users\87784\source\repos\OpenGL\OpenGL\Transform.cpp;C:\Users\87784\source\repos\OpenGL\OpenGL\x64\Debug\Transform.obj

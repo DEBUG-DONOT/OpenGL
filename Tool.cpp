@@ -5,7 +5,7 @@ void Initialization::GLFWInitialization()
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);//设置版本
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);//macos只支持core profile
     glfwWindowHint(GLFW_SAMPLES, 4);
 
 }
@@ -27,5 +27,17 @@ void Initialization::GlfwWindowJudge(GLFWwindow* window)
         glfwTerminate();
         //return -1;
         throw "Failed to create GLFW window";
+    }
+}
+
+void Initialization::GammaCorrectionControl(bool flag)
+{
+    if (flag)
+    {
+        glEnable(GL_FRAMEBUFFER_SRGB);
+    }
+    else
+    {
+        glDisable(GL_FRAMEBUFFER_SRGB);
     }
 }

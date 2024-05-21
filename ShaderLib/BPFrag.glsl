@@ -15,7 +15,7 @@ void main()
 {
    float gamma = 2.2;
    FragColor=vec4(BlinnPhong(),1.0);
-   FragColor.rgb = pow(FragColor.rgb, vec3(1.0/gamma));
+   //FragColor.rgb = pow(FragColor.rgb, vec3(1.0/gamma));
    //注释掉这一句的时候面部过白，没有注释掉的话整体都偏白
 
    //FragColor=texture(texture_diffuse1,nTexCoord);
