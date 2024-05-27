@@ -1,14 +1,8 @@
 ﻿  model.cpp
 C:\Users\87784\source\repos\OpenGL\OpenGL\model.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  main.cpp
-C:\Users\87784\source\repos\OpenGL\OpenGL\main.cpp(73,46): warning C4305: “参数”: 从“double”到“float”截断
-C:\Users\87784\source\repos\OpenGL\OpenGL\main.cpp(73,33): warning C4244: “参数”: 从“genType”转换到“float”，可能丢失数据
-C:\Users\87784\source\repos\OpenGL\OpenGL\main.cpp(73,33): warning C4244:         with
-C:\Users\87784\source\repos\OpenGL\OpenGL\main.cpp(73,33): warning C4244:         [
-C:\Users\87784\source\repos\OpenGL\OpenGL\main.cpp(73,33): warning C4244:             genType=double
-C:\Users\87784\source\repos\OpenGL\OpenGL\main.cpp(73,33): warning C4244:         ]
-C:\Users\87784\source\repos\OpenGL\OpenGL\main.cpp(105,37): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
-  正在生成代码...
+C:\Users\87784\source\repos\OpenGL\OpenGL\mesh.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  (编译源文件“model.cpp”)
+  
   OpenGL.vcxproj -> C:\Users\87784\source\repos\OpenGL\x64\Debug\OpenGL.exe
   'pwsh.exe' 不是内部或外部命令，也不是可运行的程序
   或批处理文件。

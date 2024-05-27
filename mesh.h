@@ -45,6 +45,8 @@ class Mesh {
         vector<Texture> textures;
         unsigned int VAO;
         /*  函数  */
+        //容器内的类必须有默认构造函数
+        Mesh() = default;
         Mesh(vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture> textures);
         
         void Draw(Shader& shader);

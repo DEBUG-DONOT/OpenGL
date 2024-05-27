@@ -13,6 +13,7 @@ class Model :public Component
         /*  模型数据  */
         vector<Texture> textures_loaded;	// stores all the textures loaded so far, optimization to make sure textures aren't loaded more than once.
         vector<Mesh> meshes;
+        std::string directory;
         
         /*  函数   */
         //Model(string path)
@@ -24,7 +25,6 @@ class Model :public Component
         void Draw(Shader& shader);   
         void Draw(GLuint shader);
         void loadModel(std::string path);
-        std::string directory;
     private:
         /*  函数   */
         void processNode(aiNode *node, const aiScene *scene);
