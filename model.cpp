@@ -13,7 +13,7 @@ registration::class_<Model>("Model")
 .constructor<>()
 .property("directory", &Model::directory)
 .property("textures_loaded",&Model::textures_loaded)
-.property("meshes",&Model::meshes)
+//.property("meshes",&Model::meshes)
 .method("loadModel",&Model::loadModel)
 .method("Draw", select_overload<void(Shader&)>(&Model::Draw))
 .method("Draw", select_overload<void(GLuint)>(&Model::Draw));
@@ -52,7 +52,7 @@ void Model::loadModel(string path)
     }
 
     std::string temp= path.substr(0, path.find_last_of('/'));
-   // this->directory = temp;
+    this->directory = temp;
 
     processNode(scene->mRootNode, scene);
 }
