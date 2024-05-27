@@ -46,3 +46,8 @@ shadow map算法是一个两趟的算法，那么根据这个特性可以将shad
 
 加入rttr库，看看如何构筑反射机制
 
+2024/5/26
+
+完成了Transform
+
+理想的情况肯定是有一个gameobj，然后add component（模型），add componetn（transformer），就去跑渲染。

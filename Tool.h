@@ -8,5 +8,6 @@ public:
 	static int GladInitialization();
 	static void GlfwWindowJudge(GLFWwindow* window);
 	static void GammaCorrectionControl(bool flga);
+	static GLFWwindow* CreateWindow(int width, int high, const char* name);
 };
 

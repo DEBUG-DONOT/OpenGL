@@ -1,3 +1,57 @@
-﻿  Transform.cpp
-Transform.obj : error LNK2001: 无法解析的外部符号 "public: static struct rttr::detail::as_raw_pointer const rttr::policy::ctor::as_raw_ptr" (?as_raw_ptr@ctor@policy@rttr@@2Uas_raw_pointer@detail@3@B)
-C:\Users\87784\source\repos\OpenGL\x64\Debug\OpenGL.exe : fatal error LNK1120: 1 个无法解析的外部命令
+﻿  model.cpp
+C:\Users\87784\source\repos\OpenGL\OpenGL\model.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xmemory(727,82): error C2512: “Mesh::Mesh”: 没有合适的默认构造函数可用
+  (编译源文件“model.cpp”)
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xmemory(727,82):
+  尝试匹配参数列表“()”时
+  C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xmemory(727,82):
+  模板实例化上下文(最早的实例化上下文)为
+  	C:\Users\87784\source\repos\OpenGL\OpenGL\model.h(15,22):
+  	查看对正在编译的 类 模板 实例化“std::vector<Mesh,std::allocator<Mesh>>”的引用
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(1588,23):
+  	在编译 类 模板 成员函数“void std::vector<Mesh,std::allocator<Mesh>>::resize(const unsigned __int64)”时
+  		C:\src\vcpkg\installed\x64-windows\include\rttr\detail\impl\sequential_mapper_impl.h(337,25):
+  		请参阅 "rttr::detail::sequential_container_base_dynamic<T>::set_size" 中对 "std::vector<Mesh,std::allocator<Mesh>>::resize" 的第一个引用
+          with
+          [
+              T=std::vector<Mesh,std::allocator<Mesh>>
+          ]
+  		C:\src\vcpkg\installed\x64-windows\include\rttr\detail\impl\sequential_mapper_impl.h(137,9):
+  		请参阅 "rttr::detail::sequential_container_mapper_wrapper<std::vector<Mesh,std::allocator<Mesh>>,std::vector<Mesh,std::allocator<Mesh>>,std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>>::set_size" 中对 "rttr::detail::sequential_container_base_dynamic<T>::set_size" 的第一个引用
+          with
+          [
+              _Ty=Mesh
+          ]
+          and
+          [
+              T=std::vector<Mesh,std::allocator<Mesh>>
+          ]
+  		C:\src\vcpkg\installed\x64-windows\include\rttr\detail\variant_sequential_view\variant_sequential_view_private.h(79,28):
+  		请参阅 "rttr::detail::variant_sequential_view_private::variant_sequential_view_private" 中对 "rttr::detail::sequential_container_mapper_wrapper<std::vector<Mesh,std::allocator<Mesh>>,std::vector<Mesh,std::allocator<Mesh>>,std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>>::set_size" 的第一个引用
+          with
+          [
+              _Ty=Mesh
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(1590,9):
+  	查看对正在编译的函数 模板 实例化“void std::vector<Mesh,std::allocator<Mesh>>::_Resize<std::_Value_init_tag>(const unsigned __int64,const _Ty2 &)”的引用
+          with
+          [
+              _Ty2=std::_Value_init_tag
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\vector(1578,27):
+  	查看对正在编译的函数 模板 实例化“Mesh *std::_Uninitialized_value_construct_n<std::allocator<Mesh>>(Mesh *,unsigned __int64,_Alloc &)”的引用
+          with
+          [
+              _Alloc=std::allocator<Mesh>
+          ]
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xmemory(2045,17):
+  	查看对正在编译的函数 模板 实例化“void std::_Uninitialized_backout_al<std::allocator<Mesh>>::_Emplace_back<>(void)”的引用
+  	C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.39.33519\include\xmemory(1805,35):
+  	查看对正在编译的函数 模板 实例化“void std::_Default_allocator_traits<_Alloc>::construct<_Ty,>(_Alloc &,_Objty *const )”的引用
+          with
+          [
+              _Alloc=std::allocator<Mesh>,
+              _Ty=Mesh,
+              _Objty=Mesh
+          ]
+  

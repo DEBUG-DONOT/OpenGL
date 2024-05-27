@@ -13,6 +13,8 @@ public:
 	GameObject() = default;
 	virtual ~GameObject() = default;
 	Component* AddComponent(std::string component_name);
+	Component* GetComponentByName(std::string component_name);
+	std::vector<Component*> GetComponents(std::string component_name);
 private:
 	std::string name;
 	std::unordered_map<std::string, std::vector<Component*>> typeName_Component_map;

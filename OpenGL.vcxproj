@@ -131,7 +131,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="mesh.cpp" />
     <ClCompile Include="model.cpp" />
-    <ClCompile Include="OpenGL.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="skyBox.cpp" />

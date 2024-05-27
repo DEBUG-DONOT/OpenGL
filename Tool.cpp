@@ -41,3 +41,9 @@ void Initialization::GammaCorrectionControl(bool flag)
         glDisable(GL_FRAMEBUFFER_SRGB);
     }
 }
+
+GLFWwindow* Initialization::CreateWindow(int width, int high, const char* name)
+{
+    auto* window= glfwCreateWindow(width, high, name, NULL, NULL);
+    return window;
+}

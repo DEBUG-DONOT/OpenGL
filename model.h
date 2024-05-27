@@ -6,24 +6,27 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 #include"shader.h"
-class Model 
+#include"Component.h"
+class Model :public Component
 {
     public:
         /*  模型数据  */
         vector<Texture> textures_loaded;	// stores all the textures loaded so far, optimization to make sure textures aren't loaded more than once.
         vector<Mesh> meshes;
-        string directory;
-        /*  函数   */
-        Model(string path)
-        {
-            loadModel(path);
-        }
-        void Draw(Shader& shader);   
-        void Draw(GLuint shader);
-    private:
         
         /*  函数   */
-        void loadModel(string path);
+        //Model(string path)
+        //{
+        //    loadModel(path);
+        //}
+        Model();
+        virtual ~Model()=default;
+        void Draw(Shader& shader);   
+        void Draw(GLuint shader);
+        void loadModel(std::string path);
+        std::string directory;
+    private:
+        /*  函数   */
         void processNode(aiNode *node, const aiScene *scene);
         Mesh processMesh(aiMesh *mesh, const aiScene *scene);
         vector<Texture> loadMaterialTextures(aiMaterial *mat, aiTextureType type, 
