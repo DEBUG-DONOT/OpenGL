@@ -20,7 +20,7 @@ registration::class_<Model>("Model")
 }
 
 Model::Model()
-    :directory("")
+    :Component(), directory("")
 {
 }
 
@@ -52,7 +52,7 @@ void Model::loadModel(string path)
     }
 
     std::string temp= path.substr(0, path.find_last_of('/'));
-    std::cout << temp << std::endl;
+    //std::cout << temp << std::endl;
     this->directory = temp;//this是0x50 directory是 this里面的component是null
 
     processNode(scene->mRootNode, scene);

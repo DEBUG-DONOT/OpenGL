@@ -51,3 +51,15 @@ shadow map算法是一个两趟的算法，那么根据这个特性可以将shad
 完成了Transform
 
 理想的情况肯定是有一个gameobj，然后add component（模型），add componetn（transformer），就去跑渲染。
+
+2024/6/2
+
+![image-20240602023822604](C:\Users\87784\AppData\Roaming\Typora\typora-user-images\image-20240602023822604.png)
+
+这是model创建时的问题，也就是说这个时候this指针是空的，但是如果没有继承component就没有这个问题。
+
+2024/6/2
+
+![image-20240602180933700](C:\Users\87784\AppData\Roaming\Typora\typora-user-images\image-20240602180933700.png)
+
+转换是失败的。这里会输出bad_cast

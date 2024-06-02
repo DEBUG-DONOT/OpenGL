@@ -5,11 +5,10 @@ Component* GameObject::AddComponent(std::string component_name)
 {
 	rttr::type t = rttr::type::get_by_name(component_name);
 	Component* component_=nullptr;
-	Component temp;
 	if (t.is_valid())
 	{
 		rttr::variant v = t.create();//创建一个instance
-		temp = v.get_value<Component>();
+		Component& temp = v.get_value<Component>();
 		//component_ = v.get_value<Component*>();//
 		component_ = &temp;
 		component_->SetGameObjecPointer(this);

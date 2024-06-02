@@ -14,7 +14,6 @@ class Model :public Component
         vector<Texture> textures_loaded;	// stores all the textures loaded so far, optimization to make sure textures aren't loaded more than once.
         vector<Mesh> meshes;
         std::string directory;
-        
         /*  函数   */
         //Model(string path)
         //{
