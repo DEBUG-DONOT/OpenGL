@@ -35,9 +35,16 @@ class Model
 
 class ModelComponent:public Component
 {
+    /*
+    * 这个模块继承了model
+    */
 public:
     ModelComponent() = default;
-    
+    virtual ~ModelComponent();
+    bool LoadModel(std::string path);
+    void Draw(Shader& shd);
+private:
+    Model* modelPointer=nullptr;
 };
 
 #endif

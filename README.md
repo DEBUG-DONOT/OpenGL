@@ -72,3 +72,4 @@ shadow map算法是一个两趟的算法，那么根据这个特性可以将shad
 
 通过添加一个新的modelComponent来处理当前的componet继承问题
 
+- 这样的操作是成功的，通过增加一个modelCompoment来管理Component可以避免直接和复杂的Component接触，使用一个指针来直接管理一个Component实例。

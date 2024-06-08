@@ -77,11 +77,13 @@ int main()
     std::string path1 = "nanosuit/nanosuit.obj";
     
     Model model(path);
-    //GameObject go;
-    //auto x = go.AddComponent("Model");
+
+    GameObject go;
+    //auto* x = dynamic_cast<ModelComponent*>(go.AddComponent("ModelComponent"));
+    auto* x = go.AddComponent<ModelComponent>();
+    x->LoadModel(path);
     //x不是空指针但是modelComponent是空指针
     //有两种可能，要么是类型不匹配，要么是多态转换失败
-    
     glEnable(GL_MULTISAMPLE);
     VertexShader v("ShaderLib/BPVertex.glsl");  
     FragmentShader f("ShaderLib/BPFrag.glsl");
@@ -107,16 +109,15 @@ int main()
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         //glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-        
-
         s.Bind();
         s.UpLoadUniformMat4("MVP",camera.GetMVP());
         s.UpLoadUniformMat4("model", camera.GetModelMatrix());
         s.UpLoadUniformFloat3("lightPos", mLight.GetPos());
         s.UpLoadUniformFloat3("viewPos", camera.GetCameraPos());
         //model.Draw(s.GetID());
-        model.Draw(s);
+        //model.Draw(s);
         //modelComponent->Draw(s);
+        x->Draw(s);
         skb.Draw(camera);
         glfwSwapBuffers(window);
         glfwPollEvents();
