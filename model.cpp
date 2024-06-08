@@ -5,22 +5,10 @@
 #include <stb_image.h>
 #include"rttr/registration.h"
 
-RTTR_REGISTRATION
-{
-    using namespace rttr;
-registration::class_<Model>("Model")
-//.constructor<string>()
-.constructor<>()
-.property("directory", &Model::directory)
-.property("textures_loaded",&Model::textures_loaded)
-.property("meshes",&Model::meshes)
-.method("loadModel",&Model::loadModel)
-.method("Draw", select_overload<void(Shader&)>(&Model::Draw))
-.method("Draw", select_overload<void(GLuint)>(&Model::Draw));
-}
+
 
 Model::Model()
-    :Component(), directory("")
+    :directory("")
 {
 }
 

@@ -7,7 +7,7 @@
 #include <assimp/postprocess.h>
 #include"shader.h"
 #include"Component.h"
-class Model :public Component
+class Model
 {
     public:
         /*  模型数据  */
@@ -15,10 +15,10 @@ class Model :public Component
         vector<Mesh> meshes;
         std::string directory;
         /*  函数   */
-        //Model(string path)
-        //{
-        //    loadModel(path);
-        //}
+        Model(string path)
+        {
+            loadModel(path);
+        }
         Model();
         virtual ~Model()=default;
         void Draw(Shader& shader);   
@@ -31,6 +31,13 @@ class Model :public Component
         vector<Texture> loadMaterialTextures(aiMaterial *mat, aiTextureType type, 
                                              string typeName, vector<bool> *bRepeats = nullptr);
         unsigned int TextureFromFile(const char *path, const string &directory, bool gamma = false);
+};
+
+class ModelComponent:public Component
+{
+public:
+    ModelComponent() = default;
+    
 };
 
 #endif

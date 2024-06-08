@@ -76,22 +76,12 @@ int main()
     std::string path = "shenhe/shenhe.pmx";
     std::string path1 = "nanosuit/nanosuit.obj";
     
-    //Model model(path);
-    GameObject go;
-    auto x = go.AddComponent("Model");
+    Model model(path);
+    //GameObject go;
+    //auto x = go.AddComponent("Model");
     //x不是空指针但是modelComponent是空指针
     //有两种可能，要么是类型不匹配，要么是多态转换失败
-    if (auto modelComponent = static_cast<Model*>(x))
-    {
-        std::cout << "sucess trans" << std::endl;
-        if (!modelComponent) std::cout << "nullptr" << std::endl;
-        modelComponent->loadModel(path);
-    }
-    else
-    {
-        std::cout << "bad cast" << std::endl;
-        //throw std::runtime_error("bad cast");
-    }
+    
     glEnable(GL_MULTISAMPLE);
     VertexShader v("ShaderLib/BPVertex.glsl");  
     FragmentShader f("ShaderLib/BPFrag.glsl");
@@ -125,7 +115,7 @@ int main()
         s.UpLoadUniformFloat3("lightPos", mLight.GetPos());
         s.UpLoadUniformFloat3("viewPos", camera.GetCameraPos());
         //model.Draw(s.GetID());
-        //model.Draw(s);
+        model.Draw(s);
         //modelComponent->Draw(s);
         skb.Draw(camera);
         glfwSwapBuffers(window);

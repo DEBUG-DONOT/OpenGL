@@ -63,3 +63,12 @@ shadow map算法是一个两趟的算法，那么根据这个特性可以将shad
 ![image-20240602180933700](C:\Users\87784\AppData\Roaming\Typora\typora-user-images\image-20240602180933700.png)
 
 转换是失败的。这里会输出bad_cast
+
+更换为static_cast，能够强制转换，但是对象会出现问题。
+
+可以尝试采用shared_ptr来处理
+
+2024/6/8
+
+通过添加一个新的modelComponent来处理当前的componet继承问题
+
