@@ -53,8 +53,8 @@ skyBox::skyBox(float* box, std::vector<std::string>& texturePath)
 	setup(box);
 	texture = new CubeTexture(texturePath);
 	//初始化shader
-	VertexShader sv("ShaderLib/skyBoxVert.glsl");
-	FragmentShader sf("ShaderLib/skyBoxFrag.glsl");
+	VertexShader sv("Resourse/ShaderLib/skyBoxVert.glsl");
+	FragmentShader sf("Resourse/ShaderLib/skyBoxFrag.glsl");
 	shader=new Shader(sv, sf); 
 }
 
@@ -64,8 +64,8 @@ skyBox::skyBox(std::vector<std::string>& texturePath)
     setup( this->standarVertex);
     texture = new CubeTexture(texturePath);
     //初始化shader
-    VertexShader sv("ShaderLib/skyBoxVert.glsl");
-    FragmentShader sf("ShaderLib/skyBoxFrag.glsl");
+    VertexShader sv("Resourse/ShaderLib/skyBoxVert.glsl");
+    FragmentShader sf("Resourse/ShaderLib/skyBoxFrag.glsl");
     shader = new Shader(sv, sf);
 }
 

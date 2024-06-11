@@ -127,38 +127,38 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Component.cpp" />
-    <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="mesh.cpp" />
-    <ClCompile Include="model.cpp" />
+    <ClCompile Include="FunctionLayer\Component.cpp" />
+    <ClCompile Include="FunctionLayer\GameObject.cpp" />
+    <ClCompile Include="ResourseManager\mesh.cpp" />
+    <ClCompile Include="ResourseManager\model.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="skyBox.cpp" />
-    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="ResourseManager\Texture.cpp" />
     <ClCompile Include="Tool.cpp" />
-    <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="FunctionLayer\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Component.h" />
-    <ClInclude Include="GameObject.h" />
-    <ClInclude Include="mesh.h" />
-    <ClInclude Include="model.h" />
+    <ClInclude Include="FunctionLayer\Component.h" />
+    <ClInclude Include="FunctionLayer\GameObject.h" />
+    <ClInclude Include="ResourseManager\mesh.h" />
+    <ClInclude Include="ResourseManager\model.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="skyBox.h" />
-    <ClInclude Include="Texture.h" />
+    <ClInclude Include="ResourseManager\Texture.h" />
     <ClInclude Include="Tool.h" />
-    <ClInclude Include="Transform.h" />
+    <ClInclude Include="FunctionLayer\Transform.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
-    <None Include="ShaderLib\BPFrag.glsl" />
-    <None Include="ShaderLib\BPVertex.glsl" />
-    <None Include="ShaderLib\skyBoxFrag.glsl" />
-    <None Include="ShaderLib\skyBoxVert.glsl" />
-    <None Include="ShaderLib\StencilFrag.glsl" />
-    <None Include="ShaderLib\StencilVert.glsl" />
+    <None Include="Resourse\ShaderLib\BPFrag.glsl" />
+    <None Include="Resourse\ShaderLib\BPVertex.glsl" />
+    <None Include="Resourse\ShaderLib\skyBoxFrag.glsl" />
+    <None Include="Resourse\ShaderLib\skyBoxVert.glsl" />
+    <None Include="Resourse\ShaderLib\StencilFrag.glsl" />
+    <None Include="Resourse\ShaderLib\StencilVert.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

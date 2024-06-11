@@ -24,28 +24,28 @@
     <ClCompile Include="Tool.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="model.cpp">
+    <ClCompile Include="ResourseManager\model.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Texture.cpp">
+    <ClCompile Include="ResourseManager\Texture.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="mesh.cpp">
+    <ClCompile Include="ResourseManager\mesh.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="skyBox.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Component.cpp">
+    <ClCompile Include="FunctionLayer\Component.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject.cpp">
+    <ClCompile Include="FunctionLayer\GameObject.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Transform.cpp">
+    <ClCompile Include="FunctionLayer\Transform.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,38 +56,38 @@
     <ClInclude Include="Tool.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="model.h">
+    <ClInclude Include="ResourseManager\model.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h">
+    <ClInclude Include="ResourseManager\Texture.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="mesh.h">
+    <ClInclude Include="ResourseManager\mesh.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="skyBox.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Component.h">
+    <ClInclude Include="FunctionLayer\Component.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
+    <ClInclude Include="FunctionLayer\GameObject.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Transform.h">
+    <ClInclude Include="FunctionLayer\Transform.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
-    <None Include="ShaderLib\BPFrag.glsl" />
-    <None Include="ShaderLib\BPVertex.glsl" />
-    <None Include="ShaderLib\StencilFrag.glsl" />
-    <None Include="ShaderLib\StencilVert.glsl" />
-    <None Include="ShaderLib\skyBoxVert.glsl" />
-    <None Include="ShaderLib\skyBoxFrag.glsl" />
+    <None Include="Resourse\ShaderLib\BPFrag.glsl" />
+    <None Include="Resourse\ShaderLib\BPVertex.glsl" />
+    <None Include="Resourse\ShaderLib\StencilFrag.glsl" />
+    <None Include="Resourse\ShaderLib\StencilVert.glsl" />
+    <None Include="Resourse\ShaderLib\skyBoxVert.glsl" />
+    <None Include="Resourse\ShaderLib\skyBoxFrag.glsl" />
   </ItemGroup>
 </Project>

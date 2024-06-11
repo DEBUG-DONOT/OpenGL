@@ -19,6 +19,13 @@ int Initialization::GladInitialization()
     }
 }
 
+void Initialization::OpenGLInitialization()
+{
+    glEnable(GL_CULL_FACE);
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS);
+}
+
 void Initialization::GlfwWindowJudge(GLFWwindow* window)
 {
     if (window == NULL)
