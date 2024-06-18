@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FunctionLayer\Application.cpp" />
     <ClCompile Include="FunctionLayer\Component.cpp" />
     <ClCompile Include="FunctionLayer\GameObject.cpp" />
     <ClCompile Include="ResourseManager\mesh.cpp" />
@@ -140,6 +141,7 @@
     <ClCompile Include="FunctionLayer\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FunctionLayer\Application.h" />
     <ClInclude Include="FunctionLayer\Component.h" />
     <ClInclude Include="FunctionLayer\GameObject.h" />
     <ClInclude Include="ResourseManager\mesh.h" />

@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 #include"Tool.h"
 #include"ResourseManager/Texture.h"
-#include"Camera.h"
+#include"FunctionLayer/Camera.h"
 #include<glm/gtc/matrix_transform.hpp>
 #include"FunctionLayer/GameObject.h"
 #include"FunctionLayer/Component.h"

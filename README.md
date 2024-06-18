@@ -51,9 +51,19 @@ ECS 模式被广泛应用于游戏引擎和框架中,如 Unity、Unreal Engine�
 
 shadow map算法是一个两趟的算法，那么根据这个特性可以将shadow map的实现和光照模型部分分开实现。使用一个类来描述阴影，并且通过传递参数和布尔值来改变阴影的类型和对象。
 
+## 相机
 
+### unity的相机处理
 
+在unity中，相机作为一种component处理
 
+包含以下功能：
+
+- skybox
+- 处理没有skybox的时候剩下的像素的颜色
+- culling mask 这也是我们的相机要实现的东西
+
+You can create multiple Cameras and assign each one to a different **Depth**. Cameras are drawn from low **Depth** to high **Depth**. In other words, a Camera with a **Depth** of 2 will be drawn on top of a Camera with a depth of 1. You can adjust the values of the **Normalized View Port Rectangle** property to resize and position the Camera’s view onscreen. This can create multiple mini-views like missile cams, map views, rear-view mirrors, etc.
 
 
 
@@ -100,3 +110,11 @@ shadow map算法是一个两趟的算法，那么根据这个特性可以将shad
 增加了一个application类，现在的想法是这样的，在app的初始化函数中，准备好相机、渲染这样的管线，实际上的模型加载和别的什么应该是运行的时候的东西，在这之前要准备好处理input的类，app中包含tick函数，还有logic tick 和render tick这样的东西
 
 最后的目标是在main里面有一个app::Init这样的调用，然后在一个循环里面不断的去处理这样。
+
+2024/6/18
+
+考虑处理transform类和camera
+
+教程做了一个多相机渲染，能看出来应该是想要做一个正交的和一个透视的不同的相机
+
+这里通过给物体打上标记让相机来判断物体的标记是否和自己的标记相同，那么现在相机需要的功能就是根据tag来判断物体是否要被渲染，ui相机只渲染ui，game相机渲染game
