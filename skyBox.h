@@ -1,7 +1,7 @@
 #pragma once
 #include "ResourseManager/Texture.h"
 #include "shader.h"
-#include "Camera.h"
+#include "FunctionLayer/Camera.h"
 //这个类只需要给出一个shader就能画出一个天空盒，甚至不需要专门引入shader
 class skyBox
 {

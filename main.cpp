@@ -26,15 +26,21 @@ int main()
     glfwMakeContextCurrent(window);
     Initialization::GladInitialization();
     glViewport(0, 0, 1600, 900);
-    Camera camera(glm::vec3(0,10,30), glm::vec3(0, 10, 0), glm::vec3(0, 1, 0));
-    camera.SetScene(glm::radians(45.0), 16.0 / 9.0, 0.1f, 100.0f);
+    //////////////////////////////////////////////////////////////////////
     Light mLight(glm::vec3(0, 10, 30), glm::vec3(0, 10, 0), glm::vec3(255, 255, 255)); 
     std::string path = "Resourse/shenhe/shenhe.pmx";
     std::string path1 = "Resourse/nanosuit/nanosuit.obj";
+    //////////////////////////////////////////////////////
     GameObject go;
     auto* x = go.AddComponent<ModelComponent>();
     x->LoadModel(path);
     go.AddComponent<TransformComponent>();
+    auto tsCop=dynamic_cast<TransformComponent*>( go.GetComponentByName("Transform"));
+    tsCop->SetPosition(glm::vec3(0, 10, 30));
+    auto cma=go.AddComponent<CameraComponent>();
+    cma->SetView(glm::vec3(0, 10, 0), glm::vec3(0, 1, 0));
+    cma->SetProjction(glm::radians(45.0), 16.0 / 9.0, 0.1f, 100.0f);
+
     glEnable(GL_MULTISAMPLE);
     VertexShader v("Resourse/ShaderLib/BPVertex.glsl");  
     FragmentShader f("Resourse/ShaderLib/BPFrag.glsl");
@@ -49,16 +55,17 @@ int main()
         currFrame = glfwGetTime();
         deltaTime = currFrame - lastFrame;
         lastFrame = currFrame;
-        camera.ProcessInput(window, deltaTime);
+        //camera.ProcessInput(window, deltaTime);
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
         s.Bind();
-        s.UpLoadUniformMat4("MVP",camera.GetMVP());
-        s.UpLoadUniformMat4("model", camera.GetModelMatrix());
+        //s.UpLoadUniformMat4("MVP",camera.GetMVP());
+        s.UpLoadUniformMat4("MVP", cma->GetProjctionMatrix()*cma->GetViewMatrix());
+        s.UpLoadUniformMat4("model", glm::mat4(1.0));
         s.UpLoadUniformFloat3("lightPos", mLight.GetPos());
-        s.UpLoadUniformFloat3("viewPos", camera.GetCameraPos());
+        s.UpLoadUniformFloat3("viewPos", tsCop->GetPosition());
         x->Draw(s);
-        skb.Draw(camera);
+        //skb.Draw(camera);
         glfwSwapBuffers(window);
         glfwPollEvents();
     }

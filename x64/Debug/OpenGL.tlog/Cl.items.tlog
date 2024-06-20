@@ -5,7 +5,7 @@ C:\Users\87784\source\repos\OpenGL\OpenGL\ResourseManager\mesh.cpp;C:\Users\8778
 C:\Users\87784\source\repos\OpenGL\OpenGL\ResourseManager\model.cpp;C:\Users\87784\source\repos\OpenGL\OpenGL\x64\Debug\model.obj
 C:\Users\87784\source\repos\OpenGL\OpenGL\main.cpp;C:\Users\87784\source\repos\OpenGL\OpenGL\x64\Debug\main.obj
 C:\Users\87784\source\repos\OpenGL\OpenGL\shader.cpp;C:\Users\87784\source\repos\OpenGL\OpenGL\x64\Debug\shader.obj
-C:\Users\87784\source\repos\OpenGL\OpenGL\Camera.cpp;C:\Users\87784\source\repos\OpenGL\OpenGL\x64\Debug\Camera.obj
+C:\Users\87784\source\repos\OpenGL\OpenGL\FunctionLayer\Camera.cpp;C:\Users\87784\source\repos\OpenGL\OpenGL\x64\Debug\Camera.obj
 C:\Users\87784\source\repos\OpenGL\OpenGL\skyBox.cpp;C:\Users\87784\source\repos\OpenGL\OpenGL\x64\Debug\skyBox.obj
 C:\Users\87784\source\repos\OpenGL\OpenGL\ResourseManager\Texture.cpp;C:\Users\87784\source\repos\OpenGL\OpenGL\x64\Debug\Texture.obj
 C:\Users\87784\source\repos\OpenGL\OpenGL\Tool.cpp;C:\Users\87784\source\repos\OpenGL\OpenGL\x64\Debug\Tool.obj

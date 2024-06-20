@@ -134,7 +134,7 @@
     <ClCompile Include="ResourseManager\model.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="shader.cpp" />
-    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="FunctionLayer\Camera.cpp" />
     <ClCompile Include="skyBox.cpp" />
     <ClCompile Include="ResourseManager\Texture.cpp" />
     <ClCompile Include="Tool.cpp" />
@@ -147,7 +147,7 @@
     <ClInclude Include="ResourseManager\mesh.h" />
     <ClInclude Include="ResourseManager\model.h" />
     <ClInclude Include="shader.h" />
-    <ClInclude Include="Camera.h" />
+    <ClInclude Include="FunctionLayer\Camera.h" />
     <ClInclude Include="skyBox.h" />
     <ClInclude Include="ResourseManager\Texture.h" />
     <ClInclude Include="Tool.h" />

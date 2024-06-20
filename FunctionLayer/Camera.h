@@ -46,22 +46,26 @@ class CameraComponent :public Component
 public:
 	CameraComponent();
 	~CameraComponent();
-	inline void SetPosition(glm::vec3 pos) { position = pos; }
+	//inline void SetPosition(glm::vec3 pos) { position = pos; }
 	inline glm::mat4 GetViewMatrix() { return view; }
 	inline glm::mat4 GetProjctionMatrix() { return projction; }
-
+	void SetView(const glm::vec3& cameraFoward,const glm::vec3& cameraUp);
+	void SetProjction(double fovDegrees,double aspectRatio,double nearClip,double farClip);
+	void clear();
 private:
+	int depth;//相机深度，所有的相机会从深度低的开始绘制，深度高的会在后面绘制,从0开始，-1表示未设置
+	void SortCamera();
 	glm::mat4 view;
 	glm::mat4 projction;
-	glm::vec3 position;
-	glm::vec3 lookAt;
-	glm::vec3 up;
-	double aspect;//宽高比
-	double nearPlane;
-	double farPlane;
-	double fov;//filed of view
-	int depth;//相机深度，所有的相机会从深度低的开始绘制，深度高的会在后面绘制
+	//glm::vec3 position;//从transform中获得
+	//glm::vec3 lookAt;
+	//glm::vec3 up;
+	//double aspect;//宽高比
+	//double nearPlane;
+	//double farPlane;
+	//double fov;//filed of view
 	static std::vector<CameraComponent*> CameraList;
+	static CameraComponent* currentCamera;
 	
 };
 

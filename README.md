@@ -47,6 +47,8 @@ ECS 模式被广泛应用于游戏引擎和框架中,如 Unity、Unreal Engine�
 
 # 渲染
 
+unity中内置了不同的render pipeline，称为render path
+
 ## 阴影
 
 shadow map算法是一个两趟的算法，那么根据这个特性可以将shadow map的实现和光照模型部分分开实现。使用一个类来描述阴影，并且通过传递参数和布尔值来改变阴影的类型和对象。
@@ -65,7 +67,9 @@ shadow map算法是一个两趟的算法，那么根据这个特性可以将shad
 
 You can create multiple Cameras and assign each one to a different **Depth**. Cameras are drawn from low **Depth** to high **Depth**. In other words, a Camera with a **Depth** of 2 will be drawn on top of a Camera with a depth of 1. You can adjust the values of the **Normalized View Port Rectangle** property to resize and position the Camera’s view onscreen. This can create multiple mini-views like missile cams, map views, rear-view mirrors, etc.
 
+可以使用多个摄像机并且给每一个赋予不同的深度，相机从低序号摄像机到高序号摄像机去渲染，也就是说深度为2的摄像机会在深度为1的摄像机之上绘制
 
+多相机以及相机的深度划分是有必要的，通过这样的划分可以达到很多不同的视觉效果，比如ui
 
 # LOG
 
@@ -118,3 +122,11 @@ You can create multiple Cameras and assign each one to a different **Depth**. Ca
 教程做了一个多相机渲染，能看出来应该是想要做一个正交的和一个透视的不同的相机
 
 这里通过给物体打上标记让相机来判断物体的标记是否和自己的标记相同，那么现在相机需要的功能就是根据tag来判断物体是否要被渲染，ui相机只渲染ui，game相机渲染game
+
+深度用int来处理，和unity一样，相机按照深度从小往大去遍历，深度越大的绘制在越上层
+
+2024/6/20
+
+skybox也算在camera里面
+
+把opengl中的clear的功能放过来
