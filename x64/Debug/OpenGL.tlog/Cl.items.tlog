@@ -1,6 +1,7 @@
 C:\Users\87784\source\repos\OpenGL\OpenGL\FunctionLayer\Application.cpp;C:\Users\87784\source\repos\OpenGL\OpenGL\x64\Debug\Application.obj
 C:\Users\87784\source\repos\OpenGL\OpenGL\FunctionLayer\Component.cpp;C:\Users\87784\source\repos\OpenGL\OpenGL\x64\Debug\Component.obj
 C:\Users\87784\source\repos\OpenGL\OpenGL\FunctionLayer\GameObject.cpp;C:\Users\87784\source\repos\OpenGL\OpenGL\x64\Debug\GameObject.obj
+C:\Users\87784\source\repos\OpenGL\OpenGL\FunctionLayer\ModelComponent.cpp;C:\Users\87784\source\repos\OpenGL\OpenGL\x64\Debug\ModelComponent.obj
 C:\Users\87784\source\repos\OpenGL\OpenGL\ResourseManager\mesh.cpp;C:\Users\87784\source\repos\OpenGL\OpenGL\x64\Debug\mesh.obj
 C:\Users\87784\source\repos\OpenGL\OpenGL\ResourseManager\model.cpp;C:\Users\87784\source\repos\OpenGL\OpenGL\x64\Debug\model.obj
 C:\Users\87784\source\repos\OpenGL\OpenGL\main.cpp;C:\Users\87784\source\repos\OpenGL\OpenGL\x64\Debug\main.obj

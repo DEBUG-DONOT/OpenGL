@@ -130,6 +130,7 @@
     <ClCompile Include="FunctionLayer\Application.cpp" />
     <ClCompile Include="FunctionLayer\Component.cpp" />
     <ClCompile Include="FunctionLayer\GameObject.cpp" />
+    <ClCompile Include="FunctionLayer\ModelComponent.cpp" />
     <ClCompile Include="ResourseManager\mesh.cpp" />
     <ClCompile Include="ResourseManager\model.cpp" />
     <ClCompile Include="main.cpp" />
@@ -144,6 +145,7 @@
     <ClInclude Include="FunctionLayer\Application.h" />
     <ClInclude Include="FunctionLayer\Component.h" />
     <ClInclude Include="FunctionLayer\GameObject.h" />
+    <ClInclude Include="FunctionLayer\ModelComponent.h" />
     <ClInclude Include="ResourseManager\mesh.h" />
     <ClInclude Include="ResourseManager\model.h" />
     <ClInclude Include="shader.h" />

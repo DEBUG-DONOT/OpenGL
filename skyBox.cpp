@@ -85,6 +85,22 @@ void skyBox::Draw(const Camera& camera)
 	glDepthFunc(GL_LESS);
 }
 
+void skyBox::Draw(CameraComponent* cam)
+{
+    glDepthFunc(GL_LEQUAL);
+    //glDepthMask(GL_FALSE);
+    glBindVertexArray(vao);
+    shader->Bind();
+    shader->UpLoadUniformMat4("SkyBoxProjection", cam->GetProjctionMatrix());
+    shader->UpLoadUniformMat4("SkyBoxView", glm::mat4(glm::mat3(cam->GetViewMatrix())));
+    glActiveTexture(GL_TEXTURE0);
+    texture->BindTexture();
+    glDrawArrays(GL_TRIANGLES, 0, 36);
+    glBindVertexArray(0);
+    //glDepthMask(GL_TRUE);
+    glDepthFunc(GL_LESS);
+}
+
 void skyBox::setup(float* box)
 {
 	glGenBuffers(1, &vbo);

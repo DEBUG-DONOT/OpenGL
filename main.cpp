@@ -6,7 +6,7 @@
 #include"FunctionLayer/GameObject.h"
 #include"FunctionLayer/Component.h"
 #include"FunctionLayer/Transform.h"
-#include"ResourseManager/model.h"
+#include"FunctionLayer/ModelComponent.h"
 #include"skyBox.h"
 
 std::vector<std::string> faces
@@ -46,26 +46,21 @@ int main()
     FragmentShader f("Resourse/ShaderLib/BPFrag.glsl");
     Shader s(v, f); 
     skyBox skb(faces);
-    double deltaTime=0, lastFrame=0,currFrame;
     Initialization::OpenGLInitialization();
     Initialization::GammaCorrectionControl(true);
     glm::mat4 temp = glm::scale(glm::mat4(1.0), glm::vec3(1.1, 1, 1));
     while (!glfwWindowShouldClose(window))
     {
-        currFrame = glfwGetTime();
-        deltaTime = currFrame - lastFrame;
-        lastFrame = currFrame;
         //camera.ProcessInput(window, deltaTime);
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
         s.Bind();
-        //s.UpLoadUniformMat4("MVP",camera.GetMVP());
         s.UpLoadUniformMat4("MVP", cma->GetProjctionMatrix()*cma->GetViewMatrix());
         s.UpLoadUniformMat4("model", glm::mat4(1.0));
         s.UpLoadUniformFloat3("lightPos", mLight.GetPos());
         s.UpLoadUniformFloat3("viewPos", tsCop->GetPosition());
         x->Draw(s);
-        //skb.Draw(camera);
+        skb.Draw(cma);
         glfwSwapBuffers(window);
         glfwPollEvents();
     }

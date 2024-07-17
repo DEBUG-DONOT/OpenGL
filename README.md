@@ -20,6 +20,8 @@ Assimp能够导入很多种不同的模型文件格式（并也能够导出部�
 
 assimp中有对应的函数来处理纹理
 
+assimp中考虑到了PBR的情况，对于PBR需要的几种map提供了接口。
+
 # 功能层
 
 ## GameObject和Component
@@ -70,6 +72,10 @@ You can create multiple Cameras and assign each one to a different **Depth**. Ca
 可以使用多个摄像机并且给每一个赋予不同的深度，相机从低序号摄像机到高序号摄像机去渲染，也就是说深度为2的摄像机会在深度为1的摄像机之上绘制
 
 多相机以及相机的深度划分是有必要的，通过这样的划分可以达到很多不同的视觉效果，比如ui
+
+### 教程的相机处理
+
+教程里面通过提供一个static的成员变量给mesh renderer，这样就不用自己动手去在循环里面赋予矩阵了。
 
 # LOG
 
@@ -130,3 +136,16 @@ You can create multiple Cameras and assign each one to a different **Depth**. Ca
 skybox也算在camera里面
 
 把opengl中的clear的功能放过来
+
+在当前的相机教程中，教程没有考虑到使用bp的渲染，而是直接从texture中采样的，这样就没有办法保证pipeline中shader所用到的矩阵的上传是统一的。
+
+2024/7/16
+
+首先是TextureFromFile函数中没有添加sRGB格式的选项，这导致如果我在fragment shader进行gamma矫正的话，实际上会太白，因为不需要矫正的话，进行矫正会导致颜色的值比实际的颜色的值要大，使得图片偏白。
+
+2024/7/17
+
+写了PBR的glsl代码，但是其中还有一些细节需要注意。
+
+在glsl中vec3*vec3和dot有什么区别？
+

@@ -51,7 +51,8 @@ public:
 	inline glm::mat4 GetProjctionMatrix() { return projction; }
 	void SetView(const glm::vec3& cameraFoward,const glm::vec3& cameraUp);
 	void SetProjction(double fovDegrees,double aspectRatio,double nearClip,double farClip);
-	void clear();
+	static void clear();
+	//void Foreach(std::function<void()> func);
 private:
 	int depth;//相机深度，所有的相机会从深度低的开始绘制，深度高的会在后面绘制,从0开始，-1表示未设置
 	void SortCamera();

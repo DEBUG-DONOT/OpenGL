@@ -51,6 +51,9 @@
     <ClCompile Include="FunctionLayer\Application.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="FunctionLayer\ModelComponent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="shader.h">
@@ -84,6 +87,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="FunctionLayer\Application.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="FunctionLayer\ModelComponent.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -13,6 +13,7 @@ public:
 	skyBox(float* box,std::vector<std::string>& texturePath);
 	skyBox(std::vector<std::string>& texturePath);
 	void Draw(const Camera& camera);
+	void Draw(CameraComponent* cam);
 private:
 	static float* standarVertex ;
 	void setup(float* box);

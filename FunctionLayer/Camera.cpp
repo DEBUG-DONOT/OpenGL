@@ -87,6 +87,10 @@ void CameraComponent::clear()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
+//void CameraComponent::Foreach(std::function<void()> func)
+//{
+//}
+
 void CameraComponent::SortCamera()
 {
 	//将vector中的camera按照深度从小到达排序
