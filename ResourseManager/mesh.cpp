@@ -89,6 +89,10 @@ void Mesh::Draw(GLuint shader)
     glBindVertexArray(0);
 }
 
+void Mesh::DrawPBR(Shader& shader)
+{
+}
+
 void Mesh::setupMesh()
 {
     glGenVertexArrays(1, &VAO);

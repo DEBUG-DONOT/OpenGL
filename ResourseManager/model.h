@@ -23,14 +23,18 @@ class Model
         virtual ~Model()=default;
         void Draw(Shader& shader);   
         void Draw(GLuint shader);
+        void DrawPBR(Shader& shader);
         void loadModel(std::string path);
+        void checkAllTypeTexture();
     private:
         /*  函数   */
         void processNode(aiNode *node, const aiScene *scene);
         Mesh processMesh(aiMesh *mesh, const aiScene *scene);
         vector<Texture> loadMaterialTextures(aiMaterial *mat, aiTextureType type, 
-                                             string typeName, vector<bool> *bRepeats = nullptr);
+            string typeName, vector<bool> *bRepeats = nullptr);
         unsigned int TextureFromFile(const char *path, const string &directory, bool gamma = false);
+        //用来查看有多少种类的texture
+        unordered_set<std::string> allTypeTexture;
 };
 
 

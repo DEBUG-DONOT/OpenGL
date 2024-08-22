@@ -28,6 +28,10 @@ void Model::Draw(GLuint shader)
     }
 }
 
+void Model::DrawPBR(Shader& shader)
+{
+}
+
 void Model::loadModel(string path)
 {
     Assimp::Importer import;
@@ -38,12 +42,15 @@ void Model::loadModel(string path)
         cout << "ERROR::ASSIMP::" << import.GetErrorString() << endl;
         return;
     }
-
     std::string temp= path.substr(0, path.find_last_of('/'));
-    //std::cout << temp << std::endl;
-    this->directory = temp;//this是0x50 directory是 this里面的component是null
-
+    this->directory = temp;
     processNode(scene->mRootNode, scene);
+}
+
+void Model::checkAllTypeTexture()
+{
+    for (auto it = allTypeTexture.begin(); it != allTypeTexture.end(); it++)
+        cout << *it << endl;
 }
 
 void Model::processNode(aiNode *node, const aiScene *scene)
@@ -72,7 +79,8 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
     for(unsigned int i = 0; i < mesh->mNumVertices; i++)
     {
         Vertex vertex;
-        glm::vec3 vector; // we declare a placeholder vector since assimp uses its own vector class that doesn't directly convert to glm's vec3 class so we transfer the data to this placeholder glm::vec3 first.
+        glm::vec3 vector; // we declare a placeholder vector since assimp uses its own vector class that doesn't directly convert to glm's vec3 class 
+        //so we transfer the data to this placeholder glm::vec3 first.
         // positions
         vector.x = mesh->mVertices[i].x;
         vector.y = mesh->mVertices[i].y;
@@ -245,10 +253,13 @@ vector<Texture> Model::loadMaterialTextures(aiMaterial *mat, aiTextureType type,
             texture.path = str.C_Str();
             textures.push_back(texture);
             textures_loaded.push_back(texture);  // store it as texture loaded for entire model, to ensure we won't unnecessary load duplicate textures.
+            //记录已经加载的类型
+            
         }
         if (bRepeats != nullptr)
            bRepeats->push_back(skip);
     }
+    if (allTypeTexture.count(typeName) == 0) allTypeTexture.insert(typeName);
     return textures;
 }
 

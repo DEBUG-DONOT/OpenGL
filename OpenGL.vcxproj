@@ -159,6 +159,8 @@
     <None Include="README.md" />
     <None Include="Resourse\ShaderLib\BPFrag.glsl" />
     <None Include="Resourse\ShaderLib\BPVertex.glsl" />
+    <None Include="Resourse\ShaderLib\PBRFrag.glsl" />
+    <None Include="Resourse\ShaderLib\PBRVert.glsl" />
     <None Include="Resourse\ShaderLib\skyBoxFrag.glsl" />
     <None Include="Resourse\ShaderLib\skyBoxVert.glsl" />
     <None Include="Resourse\ShaderLib\StencilFrag.glsl" />

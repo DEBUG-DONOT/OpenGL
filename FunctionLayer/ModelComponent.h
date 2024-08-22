@@ -10,6 +10,7 @@ public:
     virtual ~ModelComponent();
     bool LoadModel(std::string path);
     void Draw(Shader& shd);
+    void ShowAllTextureType();
 private:
     Model* modelPointer = nullptr;
 };

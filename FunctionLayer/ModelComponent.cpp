@@ -31,6 +31,16 @@ void ModelComponent::Draw(Shader& shd)
     }
 }
 
+void ModelComponent::ShowAllTextureType()
+{
+    if (this->modelPointer == nullptr)
+    {
+        cout << "model pointer is nullptr";
+        return;
+    }
+    this->modelPointer->checkAllTypeTexture();
+}
+
 RTTR_REGISTRATION
 {
      rttr::registration::class_<ModelComponent>("ModelComponent")

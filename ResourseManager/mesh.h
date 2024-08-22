@@ -51,6 +51,7 @@ class Mesh {
         
         void Draw(Shader& shader);
         void Draw(GLuint shader);
+        void DrawPBR(Shader& shader);
     private:
         /*  渲染数据  */
         unsigned int VBO, EBO;

@@ -14,13 +14,23 @@ Assimp能够导入很多种不同的模型文件格式（并也能够导出部�
 
 读入的数据的默认坐标系是右手坐标系，和OpenGL是一样的
 
-## Texture导入
+使用assimp来加载模型。
 
-一开始使用的是stb_image来处理图片，之后使用assimp处理模型的时候，就使用assimp来处理texture
+### 纹理
 
-assimp中有对应的函数来处理纹理
+所有加载的纹理的命名方式如下：纹理类型+N，例如diffuse1。
 
-assimp中考虑到了PBR的情况，对于PBR需要的几种map提供了接口。
+纹理有如下分类：
+
+- texture_diffuse
+  - 对应aiTextureType_DIFFUSE 
+  - 漫反射照明方程
+  - PBR Specular / Glossiness
+- 
+
+
+
+
 
 # 功能层
 
@@ -149,3 +159,24 @@ skybox也算在camera里面
 
 在glsl中vec3*vec3和dot有什么区别？
 
+2024/7/18
+
+assimp在加载的时候可以为每个顶点计算出柔和的切线和副切线向量，通过
+
+mesh->mTangents[i]来访问。
+
+2024/7/26
+
+assimp加载的时候计算的切线不知道怎么使用.
+
+新加的模型基本可用。
+
+需要调整一下位置。
+
+对于模型加载的部分不太理解，不是很懂纹理加载是如何进行的。
+
+![image-20240726184939782](C:\Users\87784\AppData\Roaming\Typora\typora-user-images\image-20240726184939782.png)
+
+这是pbr模型所有的类型
+
+还是要搞清楚模型的加载的顺序

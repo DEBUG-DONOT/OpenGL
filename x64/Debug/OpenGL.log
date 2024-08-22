@@ -1,17 +1,8 @@
-﻿  ModelComponent.cpp
-C:\Users\87784\source\repos\OpenGL\OpenGL\ResourseManager\mesh.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  (编译源文件“FunctionLayer/ModelComponent.cpp”)
-  
-  model.cpp
+﻿  model.cpp
 C:\Users\87784\source\repos\OpenGL\OpenGL\ResourseManager\model.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 C:\Users\87784\source\repos\OpenGL\OpenGL\ResourseManager\mesh.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
   (编译源文件“ResourseManager/model.cpp”)
   
-  main.cpp
-C:\Users\87784\source\repos\OpenGL\OpenGL\ResourseManager\mesh.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  (编译源文件“main.cpp”)
-  
-  正在生成代码...
   OpenGL.vcxproj -> C:\Users\87784\source\repos\OpenGL\x64\Debug\OpenGL.exe
   'pwsh.exe' 不是内部或外部命令，也不是可运行的程序
   或批处理文件。
